@@ -1,0 +1,244 @@
+<html>
+  <head>
+    <title><%= __('main_page.page_title') %></title>
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/styles/style.css"/>
+  
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/javascripts/iotAppMonitorClient.js"></script>
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/analytics/bluemix-analytics.js"></script>
+    <script type="text/javascript"> digitalData = {page: {pageInfo: {pageID: "IOTELECTRONICS"}}} </script>
+  
+    <script type="text/javascript">
+      //check github latest released version and compare with existed
+      $(document).ready(function () {
+        GetLatestReleaseInfo();
+      });
+    
+      function GetLatestReleaseInfo() {
+        $.ajaxSetup({
+          headers : {
+            'Authorization' : 'Basic Y2thb0B1cy5pYm0uY29tOlE3RW5yc09kaA==',
+            'Content-Type' : 'application/json'
+          }
+        });
+        $.getJSON("https://api.github.com/repos/IoT4E/iotforelectronics-starter/releases/latest").done(function (release) {
+          var asset = release.assets[0];
+          var downloadCount = 0;
+          var currentBuildId = "v0.0.0";
+          //var latestBuildId = release.id ? release.id:0;
+          var latestBuildId = release.tag_name ? release.tag_name : latestBuildId;       
+          if (currentBuildId>=latestBuildId) {
+            $("#githubupdatelabel").show();
+            $("#githubupdatelabel").text("IoT for Electronics Starter (" + currentBuildId +")");
+            $("#githubupdatelabel").css('color', '#4581E0');
+            $("#githubupdatelabel").css('font-size', '10pt');
+            $("#githubupdatebutton").hide();
+          } else {
+            var oneHour = 60 * 60 * 1000;
+            var oneDay = 24 * oneHour;
+            var dateDiff = new Date() - new Date(release.published_at);
+            var timeAgo;
+            if (dateDiff < oneDay) {
+              timeAgo = (dateDiff / oneHour).toFixed(1) + " hours ago";
+            } else {
+              timeAgo = (dateDiff / oneDay).toFixed(1) + " days ago";
+            }
+            var releaseInfo = "An updated IoT for Electronics Starter (" + release.tag_name + ") was released " + timeAgo + ". See ";
+            $("#githubupdatelabel").show();
+            $("#githubupdatelabel").text(releaseInfo);
+            $("#githubupdatelabel").css('color', 'red');
+            $("#githubupdatelabel").css('font-size', '10pt');
+            $("#githubupdatebutton").show();
+            $("#githubupdatebutton").text("update instruction");
+            $("#githubupdatebutton").attr("href", release.html_url);  //this url should be changed to the instruction
+          }
+        });
+      }
+    </script>
+    <label id = 'githubupdatelabel' style="font-size:10pt; margin-top: 0px;margin-bottom: 0px;margin-left: 40px;"></label>
+    <!--
+      <input id = 'githubupdatebutton' type="button" value ="update" style="background-color:green;font-size:7pt;color: #4581E0;border:2px solid #336600;padding:3px"/>
+    -->
+    <a id = 'githubupdatebutton' style=" color: #4581E0; font-size:10pt; margin-top: 0px;margin-bottom: 0px;margin-left: 0px;"></a>
+  </head>
+  <body>
+    <h4 class="bluemix-bar"><%= __('main_page.top_title') %></h4>
+    <div class="main-section">
+      <div class="container">
+        <h2><%= __('main_page.sections_preheading') %></h2>
+        <section class="col-xs-12 col-md-10 content">
+          <div class="col-xs-12 col-sm-6 explore-info">
+            <div name="selection-box-1" class="col-md-9 selection-box active">
+              <img src="/images/Washer.svg"/>
+              <h3 class="section-info"><%= __('main_page.simulate_appliance_title') %></h3>
+              <p><%= __('main_page.simulate_appliance_text') %></p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 explore-info">
+            <div name="selection-box-2" class="col-md-9 selection-box">
+              <img src="/images/Phone.svg" class="mobile-image"/>
+              <h3><%= __('main_page.consumer_app_title') %></h3>
+              <p><%= __('main_page.consumer_app_text') %></p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="main-section gray-background arrow-section">
+      <div class="container">
+        <section name="description-selection-box-1" class="col-xs-12 col-md-10 content description-box">
+        <h2 class="section-info"><%= __('main_page.simulate_appliance_subtitle') %></h2>
+          <div class="col-xs-12 col-md-6">
+            <img src="/images/Washer.svg"/>
+            <img src="/images/SimulateAppliance_Diagram.png"/>
+          </div>
+          <div class="col-xs-12 col-md-6 explain">
+            <p><%= __('main_page.simulate_appliance_p1') %></p>
+            <br/>
+            <p><%= __('main_page.simulate_appliance_p2') %></p>
+            <a href="https://new-console.ng.bluemix.net/docs/starters/IoTElectronics-starter/iotelectronics_overview.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/> <%= __('main_page.learn_more') %> </a>
+          </div>
+        </section>
+        <section name="description-selection-box-2" class="col-xs-12 col-md-10 content description-box hidden">
+        <h2 class="section-info"><%= __('main_page.consumer_app_subtitle') %></h2>
+          <div class="col-xs-12 col-md-6 image-box-2">
+            <img src="/images//Phone.svg"/>
+            <img src="/images/ConsumerApp_Diagram.png"/>
+          </div>
+          <div class="col-xs-12 col-md-6 explain">
+            <p><%= __('main_page.consumer_app_p1') %></p>
+            <p><%= __('main_page.consumer_app_p2') %></p>
+            <br> <br>
+            <p><%= __('main_page.consumer_app_p3') %></p>
+            <p><%= __('main_page.consumer_app_p4') %></p>
+            <a href="https://new-console.ng.bluemix.net/docs/starters/IoTElectronics-starter/iotelectronics_overview.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/> <%= __('main_page.learn_more') %> </a>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="installation-section">
+        <div class="main-section arrow-section">
+        <div class="container">
+          <h2><%= __('main_page.mobile_app_heading') %></h2>
+          <section class="col-xs-12 col-md-10 content">
+            <div class="col-xs-12 col-md-4">
+              <img class="mobile-image" src="/images/Phone.svg"/>
+            </div>
+            <div class="col-xs-12 col-md-8 instructions-section">
+              <div class="install-info">
+                <h3><strong><%= __('main_page.mobile_app_subheading') %></strong></h3>
+                <h3> <img src="/images/Install_Step1.svg" />
+                  <%= __('main_page.download_app') %>
+                  <p><%= __('main_page.download_app_p1') %></p>
+                </h3>
+                <h3> <img src="/images/Install_Step2.svg"/> <%= __('main_page.connect_app') %>
+                  <p><%= __('main_page.connect_app_p1') %></p>
+                  <p><%= __('main_page.connect_app_p2') %></p>
+                </h3>
+                <br/>
+                <h3><strong><a href="https://new-console.ng.bluemix.net/docs/starters/IoTElectronics-starter/iotelectronics_config_mobile.html" target="_blank"> <%= __('main_page.mobile_download_more_details') %> </a></strong></h3>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="main-section gray-background arrow-section">
+        <div class="container">
+        <section class="col-xs-12 col-md-10 content">
+          <h2><%= __('main_page.scan_heading') %></h2>
+             <section class="col-xs-12 col-md-8 content">
+                <img class="platform-qr-code" src="/qr/getPlatformCredentials"/>
+                <h4> <strong><%= __('main_page.connection_code') %></strong> </h4>
+                <p><%= __('main_page.scan_p1') %></p>
+             </section>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="main-section arrow-section">
+      <div class="container">
+        <section class="col-xs-12 col-md-10 content">
+          <h2><%= __('main_page.add_washer_heading') %></h2>
+          <p class="add-washer-message"><%= __('main_page.add_washer_message1') %><p>
+          <p class="max-washer-message hidden"><span><%= __('main_page.add_washer_message2') %></span></p>
+          <button id="addNewDeviceButton" class="add-button"><img src="/images/PlusWasher_en.svg"></button>
+          <hr/>
+          <div class="washer-list">
+            <p class="selection-text"><strong><%= __('main_page.your_washers') %></strong><span><%= __('main_page.select_washer') %></span></p>
+            <p class="no-washers-message"><%= __('main_page.no_washers_added') %></p>
+            <p class="appxp-washer-message hidden"><%= __('main_page.must_add_washer') %></p>
+            <div class="list-group">
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <a class="ibm-top-link hidden" aria-label="Back to top" href="#top" tabindex="0"><%= __('main_page.back_to_top') %></a>
+    <footer class="main-section gray-background">
+      <div class="container">
+        <section class="col-xs-12 col-md-10 content">
+          <ul class="footer-links">
+            <li><p><%= __('main_page.explore_more') %></p></li>
+            <li><h4><a class="link"  id="openIotPModal" target="_blank" ><%= __('main_page.manage_devices') %> ></a></h4></li>
+            <li><h4><a class="link" id="openNoderedModal" target="_blank" ><%= __('main_page.devices_node_red') %> > </a></h4></li>
+          </ul>
+        </section>
+      </div>
+      <div id="exploreMoreIoTP" class="linksModal">
+        <div class="modalDisplay">
+         <!-- clos button -->
+         <div class="closeDiv">
+           <span class="closeModal" onclick="document.getElementById('exploreMoreIoTP').style.display='none'">&times;</span>
+         </div>
+          <img class="col-xs-12 col-md-6 modal-imageLink" id="linkImage" src="/images/WatsonIoTPlatform.png">
+          <div class= "col-xs-12 col-md-6  textDescription">
+            <h2 class="linksTitle"><%= __('main_page.manage_devices') %></h2>
+            <p><%= __('main_page.iotp_description_part1') %><strong> <%= __('main_page.iot_platform') %></strong> <%= __('main_page.iotp_description_part2') %><strong> <%= __('main_page.iot_launch') %></strong></p>
+            <a href="https://console.bluemix.net/docs/starters/IoTElectronics-starter/iotelectronics_dashboard.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/><%= __('main_page.docs') %></a>
+            <a href="<%= platformDashboard %>" target="_blank"><img src="/images/LearnMoreArrow.svg"/><%= __('main_page.bluemix_dashboard') %></a>
+          </div>
+        </div>
+      </div>
+      <div id="exploreMoreNodeRed" class="linksModal">
+      <div class="modalDisplay">
+       <div class="closeDiv">
+       <span class="closeModal" onclick="document.getElementById('exploreMoreNodeRed').style.display='none'">&times;</span>
+        </div>
+        <img class="col-xs-12 col-md-6 modal-imageLink" id="linkImage" src="/images/iot-electronics-notification.jpg">
+        <div class= "col-xs-12 col-md-6 textDescription">
+          <h2 class="linksTitle"><%= __('main_page.devices_node_red') %></h2>
+          <p><%= __('main_page.node_red_description') %></p>
+          <a href="https://console.bluemix.net/docs/starters/IoTElectronics-starter/iotelectronics_nodeRED_overview.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/><%= __('main_page.docs') %></a>
+          <a id="nodeRedLink"><img src="/images/LearnMoreArrow.svg"/><%= __('main_page.node_red_sample') %></a>
+        </div>
+      </div>
+      </div>
+    </footer>
+  
+    <div class="alert-messages">
+      <div class="alert alert-success" id="alertDeviceDeleted">
+        <p><%= __('main_page.device_deleted') %></p>
+      </div>
+      <div class="alert alert-danger" id="alertError">
+        <a href="#" class="close">&times;</a>
+        <p></p>
+      </div>
+    </div>
+  
+    <a id="formButton" href="contact" target="_blank"><%= __('main_page.contact_electronics') %></a>
+  
+    <script>
+      var DEVICE_DELETED_MSG = "<%= __('main_page.device_deleted') %>";
+      var TIMEOUT_LIST = "<%= __('main_page.timeout_list') %>";
+      var TIMEOUT_CREATE = "<%= __('main_page.timeout_create') %>";
+    </script>
+    <script src="/javascripts/index.js"></script>
+  </body>
+  </html>
+  

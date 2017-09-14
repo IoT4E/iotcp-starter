@@ -1,0 +1,51 @@
+<!--
+/********************************************************* {COPYRIGHT-TOP} ***
+* IBM Confidential
+* OCO Source Materials
+* IoT for Electronics - SVL720160500
+*
+* (C) Copyright IBM Corp. 2016  All Rights Reserved.
+*
+* The source code for this program is not published or otherwise  
+* divested of its trade secrets, irrespective of what has been 
+* deposited with the U.S. Copyright Office.
+********************************************************* {COPYRIGHT-END} **/
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Tahoma, Geneva, sans-serif;
+      }
+      div {
+        display: inline;
+      }
+    </style>
+    <script>
+      function updateStats(memuse) {
+        document.getElementById('rss').innerHTML = memuse.rss;
+        document.getElementById('heapTotal').innerHTML = memuse.heapTotal;
+        document.getElementById('heapUsed').innerHTML = memuse.heapUsed;
+		document.getElementById('simulations').innerHTML = memuse.simulations;
+		document.getElementById('connectedDevices').innerHTML = memuse.connectedDevices;
+		document.getElementById('devices').innerHTML = memuse.devices;
+      }
+      var host = window.document.location.host.replace(/:.*/, '');
+      var ws = new WebSocket("<%=wsurl%>");
+      ws.onmessage = function (event) {
+        updateStats(JSON.parse(event.data));
+      };
+    </script>
+  </head>
+  <body>
+    <strong>Server Stats</strong><br>
+    RSS: <div id='rss'></div><br>
+    Heap total: <div id='heapTotal'></div><br>
+    Heap used: <div id='heapUsed'></div><br>
+	Simulations running: <div id='simulations'></div><br>
+	Connected Devices: <div id='connectedDevices'></div><br>
+	Total Devices: <div id='devices'></div><br>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+{
+  "copyright": [
+    "IBM Confidential",
+    "OCO Source Materials",
+    "IoT for Electronics - SVL720160500",
+    "(C) Copyright IBM Corp. 2016  All Rights Reserved.",
+    "The source code for this program is not published or otherwise",
+    "divested of its trade secrets, irrespective of what has been",
+    "deposited with the U.S. Copyright Office."
+  ],
+  "devicesSchemas": [
+    {
+      "guid": "iot4electronics_washing_machine",
+      "name": "washingMachine",
+      "mqttOutputs": [
+        {
+          "name": "statusReport",
+          "qos": "0",
+          "payload": "status,failureType,program,currentCycle,vibration,waterPressure,serialNumber,make,model",
+          "pattern": {
+            "rate": 3,
+            "type": "Periodic"
+          }
+        },
+        {
+          "name": "failureAlert",
+          "qos": "0",
+          "payload": "failureType",
+          "pattern": {
+            "rate": 1,
+            "type": "OnChange"
+          }
+        },
+        {
+          "name": "waterConsumption",
+          "qos": "0",
+          "payload": "waterConsumption",
+          "pattern": {
+            "rate": 1,
+            "type": "OnChange"
+          }
+        }
+      ],
+      "attributes": [
+        {
+          "name": "currentCycle",
+          "defaultValue": "Empty"
+        },
+        {
+          "name": "failureType"
+        },
+        {
+          "name": "status",
+          "defaultValue": "Ready"
+        },
+        {
+          "name": "doorOpen",
+          "defaultValue": "false"
+        },
+        {
+          "name": "program",
+          "defaultValue": "Cottons"
+        },
+        {
+          "name": "vibration",
+          "dataType": "Number",
+          "defaultValue": 80
+        },
+        {
+          "name": "waterPressure",
+          "dataType": "Number",
+          "defaultValue": 70
+        },
+        {
+          "name": "serialNumber"
+        },
+        {
+          "name": "make",
+          "defaultValue": "Swirlmore"
+        },
+        {
+          "name": "model",
+          "defaultValue": "wkw007ge"
+        },
+        {
+          "name": "waterConsumption",
+          "dataType": "Number",
+          "defaultValue": 0
+        }
+      ],
+      "simulation": {
+        "onConnectedCode": null,
+        "onInitCode": "var timeoutID = null;\n\nthis.clearWashingTimeout = _.bind(function(){\n\tif(timeoutID){\n\t\tclearTimeout(timeoutID);\n\t\ttimeoutID = null;\n\t}\n}, this);\n\nthis.startWashing = _.bind(function(){\n\tif(this.status !== \"Ready\" && this.status !== \"Stopped\")\n\t\treturn;\n\t\n\tvar cyclesTimes = [7000, 5000, 5000, 5000, 5000, 5000];\n\tvar cyclesStates = [\"Filling\", \"Washing\", \"Soaking\", \"Spinning\", \"Draining\", \"End\"];\n\tvar cycleIndex = 0;\n\t\n\tthis.status = \"Working\";\n\tthis.waterConsumption = 0;\n\t\n \tvar nextCycleFunc = _.bind(function(){\n\t\tthis.currentCycle = cyclesStates[cycleIndex];\n\t\tvar cycletime = cyclesTimes[cycleIndex];\n\n\t\tif(this.currentCycle == \"Filling\" || this.currentCycle == \"Soaking\"){\n\t\t\tthis.waterConsumption = this.waterConsumption + 25;\n\t\t}\n\n\t\tif(cyclesStates.length == cycleIndex){\n\t\t\tthis.currentCycle = \"Empty\";\n\t\t\tthis.status = \"Ready\";\n\t\t\ttimeoutID = null;\n\t\t}\n\t\telse{\n\t\t\tcycleIndex++;\t\n\t\t\ttimeoutID = setTimeout(nextCycleFunc, cycletime);\n\t\t}\n\t}, this);\n\n\tnextCycleFunc();\n}, this);\n\nthis.stopWashing = _.bind(function(){\n\tif(this.status !== \"Working\")\n\t\treturn;\n\tthis.status = \"Stopped\";\n\tthis.currentCycle = \"Stopped\";\n\tthis.clearWashingTimeout();\n}, this);\n\nvar generateSerialNumber = function(){\n\tvar serialNumber = String(Math.floor(Math.random()*900) + 100);\n\tserialNumber = serialNumber.concat(new Date().getTime());\n\tserialNumber = [serialNumber.slice(0, 4), serialNumber.slice(4, 8), serialNumber.slice(8, 12), serialNumber.slice(12)].join('-');\n\treturn serialNumber;\n}\n\nthis.serialNumber = generateSerialNumber();",
+        "onMessageReceptionCode": "payload = (payload) ? JSON.parse(payload) : {};\nswitch(message){\n\tcase \"startWashing\":\n\t\tthis.startWashing();\n\t\tbreak;\n\tcase \"stopWashing\":\n\t\tthis.stopWashing();\n}",
+        "onRunningCode": "if(this.status == \"Failure\"){\n\tthis.clearWashingTimeout();\n}",
+        "onRunningPeriodSec": "3"
+      }
+    }
+  ],
+  "devices": []
+}

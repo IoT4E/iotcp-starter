@@ -1,0 +1,140 @@
+<!--
+/********************************************************* {COPYRIGHT-TOP} ***
+* IBM Confidential
+* OCO Source Materials
+* IoT for Electronics - SVL720160500
+*
+* (C) Copyright IBM Corp. 2016  All Rights Reserved.
+*
+* The source code for this program is not published or otherwise  
+* divested of its trade secrets, irrespective of what has been 
+* deposited with the U.S. Copyright Office.
+********************************************************* {COPYRIGHT-END} **/
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title><%= __('contact_form.page_title') %></title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <script src="/jquery/jquery.min.js"></script>
+
+  </head>
+
+  <body id="starter-app">
+    <div id="ibm-top">
+      <main role="main">
+        <div id="form">
+          <div id="form-content">
+            <div id="form-content-body">
+              <div id="form-content-main">
+                <div class="main-container">
+                  <div class="page-description">
+                    <header>
+                      <h2><%= __('contact_form.header') %></h2>
+                    </header>
+                    <div class="description-box">
+                      <section>
+                        <p><%= __('contact_form.section_p1') %></p>
+
+                        <p><%= __('contact_form.section_p2') %></p>
+                        <ol class="check-list ordered-list">
+                          <li>
+                            <p><%= __('contact_form.checklist1_title') %></p>
+                            <p><%= __('contact_form.checklist1_text') %></p>
+                          </li>
+                          <li>
+                            <p><%= __('contact_form.checklist2_title') %></p>
+                            <p><%= __('contact_form.checklist2_text') %></p>
+                          </li>
+                        </ol>
+                        <p class="last-text"><%= __('contact_form.section_p3') %></p>
+                      </section>
+                    </div>
+                  </div>
+                  <div class="page-form">
+                    <div id="arrow-box">
+                      <img src="https://www-01.ibm.com/marketing/iwm/iwmdocs/web/dre/digital_analytics/images/ba_arrow.png">
+                    </div>
+                    <form id="register-form" name="register" method="post">
+                      <p><%= __('contact_form.required_text') %></p>
+                      <h2><%= __('contact_form.business_contact_info') %></h2>
+                      <ul class="form-fields">
+                        <li class="full-width">
+                          <p class="error-message error-inactive"><%= __('contact_form.field_required') %></p>
+                          <p><%= __('contact_form.country_region') %>  <span class="form-important">*</span></p>
+                          <div class="country-selection">
+                            <select name="country">
+                              <option value=""><%= __('contact_form.select_one') %></option>
+                              <option id="Q_DROPDOWN_-16_AF" value="AF" geo="EC">Afghanistan</option><option id="Q_DROPDOWN_-16_AL" value="AL" geo="EC">Albania</option><option id="Q_DROPDOWN_-16_DZ" value="DZ" geo="EC">Algeria</option><option id="Q_DROPDOWN_-16_AS" value="AS" geo="AM">American Samoa</option><option id="Q_DROPDOWN_-16_AD" value="AD" geo="EW">Andorra</option>  <option id="Q_DROPDOWN_-16_AO" value="AO" geo="EC">Angola</option>  <option id="Q_DROPDOWN_-16_AI" value="AI" geo="AM">Anguilla</option>  <option id="Q_DROPDOWN_-16_AQ" value="AQ" geo="AP">Antarctica</option>  <option id="Q_DROPDOWN_-16_AG" value="AG" geo="AM">Antigua and Barbuda</option>  <option id="Q_DROPDOWN_-16_AR" value="AR" geo="LA">Argentina</option>  <option id="Q_DROPDOWN_-16_AM" value="AM" geo="EC">Armenia</option>  <option id="Q_DROPDOWN_-16_AW" value="AW" geo="AM">Aruba</option>  <option id="Q_DROPDOWN_-16_AU" value="AU" geo="AP">Australia</option>  <option id="Q_DROPDOWN_-16_AT" value="AT" geo="EN">Austria</option>  <option id="Q_DROPDOWN_-16_AZ" value="AZ" geo="EC">Azerbaijan</option>  <option id="Q_DROPDOWN_-16_BS" value="BS" geo="AM">Bahamas</option>  <option id="Q_DROPDOWN_-16_BH" value="BH" geo="EC">Bahrain</option>  <option id="Q_DROPDOWN_-16_BD" value="BD" geo="AP">Bangladesh</option>  <option id="Q_DROPDOWN_-16_BB" value="BB" geo="AM">Barbados</option>  <option id="Q_DROPDOWN_-16_BY" value="BY" geo="EC">Belarus</option>  <option id="Q_DROPDOWN_-16_BE" value="BE" geo="EW">Belgium</option>  <option id="Q_DROPDOWN_-16_BZ" value="BZ" geo="LA">Belize</option>  <option id="Q_DROPDOWN_-16_BJ" value="BJ" geo="EC">Benin</option>  <option id="Q_DROPDOWN_-16_BM" value="BM" geo="AM">Bermuda</option>  <option id="Q_DROPDOWN_-16_BT" value="BT" geo="AP">Bhutan</option>  <option id="Q_DROPDOWN_-16_BO" value="BO" geo="LA">Bolivia, Plurinational State of</option>  <option id="Q_DROPDOWN_-16_BQ" value="BQ" geo="AM">Bonaire, Sint Eustatius and Saba</option>  <option id="Q_DROPDOWN_-16_BA" value="BA" geo="EC">Bosnia and Herzegovina</option>  <option id="Q_DROPDOWN_-16_BW" value="BW" geo="EC">Botswana</option>  <option id="Q_DROPDOWN_-16_BV" value="BV" geo="EN">Bouvet Island</option>  <option id="Q_DROPDOWN_-16_BR" value="BR" geo="LA">Brazil</option>  <option id="Q_DROPDOWN_-16_IO" value="IO" geo="EN">British Indian Ocean Territory</option>  <option id="Q_DROPDOWN_-16_BN" value="BN" geo="AP">Brunei Darussalam</option>  <option id="Q_DROPDOWN_-16_BG" value="BG" geo="EC">Bulgaria</option>  <option id="Q_DROPDOWN_-16_BF" value="BF" geo="EC">Burkina Faso</option>  <option id="Q_DROPDOWN_-16_BI" value="BI" geo="EC">Burundi</option>  <option id="Q_DROPDOWN_-16_KH" value="KH" geo="AP">Cambodia</option>  <option id="Q_DROPDOWN_-16_CM" value="CM" geo="EC">Cameroon</option>  <option id="Q_DROPDOWN_-16_CA" value="CA" geo="AM">Canada</option>  <option id="Q_DROPDOWN_-16_CV" value="CV" geo="EC">Cape Verde</option>  <option id="Q_DROPDOWN_-16_KY" value="KY" geo="AM">Cayman Islands</option>  <option id="Q_DROPDOWN_-16_CF" value="CF" geo="EC">Central African Republic</option>  <option id="Q_DROPDOWN_-16_TD" value="TD" geo="EC">Chad</option>  <option id="Q_DROPDOWN_-16_CL" value="CL" geo="LA">Chile</option>  <option id="Q_DROPDOWN_-16_CN" value="CN" geo="AP">China</option>  <option id="Q_DROPDOWN_-16_CX" value="CX" geo="AP">Christmas Island</option>  <option id="Q_DROPDOWN_-16_CC" value="CC" geo="AP">Cocos (Keeling) Islands</option>  <option id="Q_DROPDOWN_-16_CO" value="CO" geo="LA">Colombia</option>  <option id="Q_DROPDOWN_-16_KM" value="KM" geo="EW">Comoros</option>  <option id="Q_DROPDOWN_-16_CG" value="CG" geo="EC">Congo</option>  <option id="Q_DROPDOWN_-16_CD" value="CD" geo="EC">Congo, The Democratic Republic of the</option>  <option id="Q_DROPDOWN_-16_CK" value="CK" geo="AP">Cook Islands</option>  <option id="Q_DROPDOWN_-16_CR" value="CR" geo="LA">Costa Rica</option>  <option id="Q_DROPDOWN_-16_HR" value="HR" geo="EC">Croatia</option>  <option id="Q_DROPDOWN_-16_CW" value="CW" geo="AM">Curaçao</option>  <option id="Q_DROPDOWN_-16_CY" value="CY" geo="EW">Cyprus</option>  <option id="Q_DROPDOWN_-16_CZ" value="CZ" geo="EC">Czech Republic</option>  <option id="Q_DROPDOWN_-16_CI" value="CI" geo="EC">Côte d'Ivoire</option>  <option id="Q_DROPDOWN_-16_DK" value="DK" geo="EN">Denmark</option>  <option id="Q_DROPDOWN_-16_DJ" value="DJ" geo="EC">Djibouti</option>  <option id="Q_DROPDOWN_-16_DM" value="DM" geo="AM">Dominica</option>  <option id="Q_DROPDOWN_-16_DO" value="DO" geo="LA">Dominican Republic</option>  <option id="Q_DROPDOWN_-16_EC" value="EC" geo="LA">Ecuador</option>  <option id="Q_DROPDOWN_-16_EG" value="EG" geo="EC">Egypt</option>  <option id="Q_DROPDOWN_-16_SV" value="SV" geo="LA">El Salvador</option>  <option id="Q_DROPDOWN_-16_GQ" value="GQ" geo="EC">Equatorial Guinea</option>  <option id="Q_DROPDOWN_-16_ER" value="ER" geo="EC">Eritrea</option>  <option id="Q_DROPDOWN_-16_EE" value="EE" geo="EC">Estonia</option>  <option id="Q_DROPDOWN_-16_ET" value="ET" geo="EC">Ethiopia</option>  <option id="Q_DROPDOWN_-16_FK" value="FK" geo="EN">Falkland Islands (Malvinas)</option>  <option id="Q_DROPDOWN_-16_FO" value="FO" geo="EN">Faroe Islands</option>  <option id="Q_DROPDOWN_-16_FJ" value="FJ" geo="AP">Fiji</option>  <option id="Q_DROPDOWN_-16_FI" value="FI" geo="EN">Finland</option>  <option id="Q_DROPDOWN_-16_FR" value="FR" geo="EW">France</option>  <option id="Q_DROPDOWN_-16_GF" value="GF" geo="EW">French Guiana</option>  <option id="Q_DROPDOWN_-16_PF" value="PF" geo="EW">French Polynesia</option>  <option id="Q_DROPDOWN_-16_TF" value="TF" geo="EW">French Southern Territories</option>  <option id="Q_DROPDOWN_-16_GA" value="GA" geo="EC">Gabon</option>  <option id="Q_DROPDOWN_-16_GM" value="GM" geo="EC">Gambia</option>  <option id="Q_DROPDOWN_-16_GE" value="GE" geo="EC">Georgia</option>  <option id="Q_DROPDOWN_-16_DE" value="DE" geo="EN">Germany</option>  <option id="Q_DROPDOWN_-16_GH" value="GH" geo="EC">Ghana</option>  <option id="Q_DROPDOWN_-16_GI" value="GI" geo="EN">Gibraltar</option>  <option id="Q_DROPDOWN_-16_GR" value="GR" geo="EW">Greece</option>  <option id="Q_DROPDOWN_-16_GL" value="GL" geo="EN">Greenland</option>  <option id="Q_DROPDOWN_-16_GD" value="GD" geo="AM">Grenada</option>  <option id="Q_DROPDOWN_-16_GP" value="GP" geo="EW">Guadeloupe</option>  <option id="Q_DROPDOWN_-16_GU" value="GU" geo="AM">Guam</option>  <option id="Q_DROPDOWN_-16_GT" value="GT" geo="LA">Guatemala</option>  <option id="Q_DROPDOWN_-16_GG" value="GG" geo="AM">Guernsey</option>  <option id="Q_DROPDOWN_-16_GN" value="GN" geo="EC">Guinea</option>  <option id="Q_DROPDOWN_-16_GW" value="GW" geo="EC">Guinea-Bissau</option>  <option id="Q_DROPDOWN_-16_GY" value="GY" geo="AM">Guyana</option>  <option id="Q_DROPDOWN_-16_HT" value="HT" geo="LA">Haiti</option>  <option id="Q_DROPDOWN_-16_HM" value="HM" geo="AP">Heard Island and McDonald Islands</option>  <option id="Q_DROPDOWN_-16_VA" value="VA" geo="EW">Holy See (Vatican City State)</option>  <option id="Q_DROPDOWN_-16_HN" value="HN" geo="LA">Honduras</option>  <option id="Q_DROPDOWN_-16_HK" value="HK" geo="AP">Hong Kong</option>  <option id="Q_DROPDOWN_-16_HU" value="HU" geo="EC">Hungary</option>  <option id="Q_DROPDOWN_-16_IS" value="IS" geo="EN">Iceland</option>  <option id="Q_DROPDOWN_-16_IN" value="IN" geo="AP">India</option>  <option id="Q_DROPDOWN_-16_ID" value="ID" geo="AP">Indonesia</option>  <option id="Q_DROPDOWN_-16_IQ" value="IQ" geo="EC">Iraq</option>  <option id="Q_DROPDOWN_-16_IE" value="IE" geo="EN">Ireland</option>  <option id="Q_DROPDOWN_-16_IM" value="IM" geo="AM">Isle of Man</option>  <option id="Q_DROPDOWN_-16_IL" value="IL" geo="EW">Israel</option>  <option id="Q_DROPDOWN_-16_IT" value="IT" geo="EW">Italy</option>  <option id="Q_DROPDOWN_-16_JM" value="JM" geo="AM">Jamaica</option>  <option id="Q_DROPDOWN_-16_JP" value="JP" geo="JN">Japan</option>  <option id="Q_DROPDOWN_-16_JE" value="JE" geo="AM">Jersey</option>  <option id="Q_DROPDOWN_-16_JO" value="JO" geo="EC">Jordan</option>  <option id="Q_DROPDOWN_-16_KZ" value="KZ" geo="EC">Kazakhstan</option>  <option id="Q_DROPDOWN_-16_KE" value="KE" geo="EC">Kenya</option>  <option id="Q_DROPDOWN_-16_KI" value="KI" geo="AP">Kiribati</option>  <option id="Q_DROPDOWN_-16_KR" value="KR" geo="AP">Korea, Republic of</option>  <option id="Q_DROPDOWN_-16_KW" value="KW" geo="EC">Kuwait</option>  <option id="Q_DROPDOWN_-16_KG" value="KG" geo="EC">Kyrgyzstan</option>  <option id="Q_DROPDOWN_-16_LA" value="LA" geo="AP">Lao People's Democratic Republic</option>  <option id="Q_DROPDOWN_-16_LV" value="LV" geo="EC">Latvia</option>  <option id="Q_DROPDOWN_-16_LB" value="LB" geo="EC">Lebanon</option>  <option id="Q_DROPDOWN_-16_LS" value="LS" geo="EC">Lesotho</option>  <option id="Q_DROPDOWN_-16_LR" value="LR" geo="EC">Liberia</option>  <option id="Q_DROPDOWN_-16_LY" value="LY" geo="EC">Libya</option>  <option id="Q_DROPDOWN_-16_LI" value="LI" geo="EN">Liechtenstein</option>  <option id="Q_DROPDOWN_-16_LT" value="LT" geo="EC">Lithuania</option>  <option id="Q_DROPDOWN_-16_LU" value="LU" geo="EW">Luxembourg</option>  <option id="Q_DROPDOWN_-16_MO" value="MO" geo="AP">Macao</option>  <option id="Q_DROPDOWN_-16_MK" value="MK" geo="EC">Macedonia, The former Yugoslav Republic of</option>  <option id="Q_DROPDOWN_-16_MG" value="MG" geo="EC">Madagascar</option>  <option id="Q_DROPDOWN_-16_MW" value="MW" geo="EC">Malawi</option>  <option id="Q_DROPDOWN_-16_MY" value="MY" geo="AP">Malaysia</option>  <option id="Q_DROPDOWN_-16_MV" value="MV" geo="AP">Maldives</option>  <option id="Q_DROPDOWN_-16_ML" value="ML" geo="EC">Mali</option>  <option id="Q_DROPDOWN_-16_MT" value="MT" geo="EN">Malta</option>  <option id="Q_DROPDOWN_-16_MH" value="MH" geo="AM">Marshall Islands</option>  <option id="Q_DROPDOWN_-16_MQ" value="MQ" geo="EW">Martinique</option>  <option id="Q_DROPDOWN_-16_MR" value="MR" geo="EC">Mauritania</option>  <option id="Q_DROPDOWN_-16_MU" value="MU" geo="EC">Mauritius</option>  <option id="Q_DROPDOWN_-16_YT" value="YT" geo="EW">Mayotte</option>  <option id="Q_DROPDOWN_-16_MX" value="MX" geo="LA">Mexico</option>  <option id="Q_DROPDOWN_-16_FM" value="FM" geo="AM">Micronesia, Federated States of</option>  <option id="Q_DROPDOWN_-16_MD" value="MD" geo="EC">Moldova, Republic of</option>  <option id="Q_DROPDOWN_-16_MC" value="MC" geo="EW">Monaco</option>  <option id="Q_DROPDOWN_-16_MN" value="MN" geo="AP">Mongolia</option>  <option id="Q_DROPDOWN_-16_ME" value="ME" geo="EC">Montenegro</option>  <option id="Q_DROPDOWN_-16_MS" value="MS" geo="AM">Montserrat</option>  <option id="Q_DROPDOWN_-16_MA" value="MA" geo="EC">Morocco</option>  <option id="Q_DROPDOWN_-16_MZ" value="MZ" geo="EC">Mozambique</option>  <option id="Q_DROPDOWN_-16_MM" value="MM" geo="AP">Myanmar</option>  <option id="Q_DROPDOWN_-16_NA" value="NA" geo="EC">Namibia</option>  <option id="Q_DROPDOWN_-16_NR" value="NR" geo="AP">Nauru</option>  <option id="Q_DROPDOWN_-16_NP" value="NP" geo="AP">Nepal</option>  <option id="Q_DROPDOWN_-16_NL" value="NL" geo="EW">Netherlands</option>  <option id="Q_DROPDOWN_-16_NC" value="NC" geo="EW">New Caledonia</option>  <option id="Q_DROPDOWN_-16_NZ" value="NZ" geo="AP">New Zealand</option>  <option id="Q_DROPDOWN_-16_NI" value="NI" geo="LA">Nicaragua</option>  <option id="Q_DROPDOWN_-16_NE" value="NE" geo="EC">Niger</option>  <option id="Q_DROPDOWN_-16_NG" value="NG" geo="EC">Nigeria</option>  <option id="Q_DROPDOWN_-16_NU" value="NU" geo="AP">Niue</option>  <option id="Q_DROPDOWN_-16_NF" value="NF" geo="AP">Norfolk Island</option>  <option id="Q_DROPDOWN_-16_MP" value="MP" geo="AM">Northern Mariana Islands</option>  <option id="Q_DROPDOWN_-16_NO" value="NO" geo="EN">Norway</option>  <option id="Q_DROPDOWN_-16_OM" value="OM" geo="EC">Oman</option>  <option id="Q_DROPDOWN_-16_PK" value="PK" geo="EC">Pakistan</option>  <option id="Q_DROPDOWN_-16_PW" value="PW" geo="AM">Palau</option>  <option id="Q_DROPDOWN_-16_PS" value="PS" geo="EC">Palestine, State of</option>  <option id="Q_DROPDOWN_-16_PA" value="PA" geo="LA">Panama</option>  <option id="Q_DROPDOWN_-16_PG" value="PG" geo="AP">Papua New Guinea</option>  <option id="Q_DROPDOWN_-16_PY" value="PY" geo="LA">Paraguay</option>  <option id="Q_DROPDOWN_-16_PE" value="PE" geo="LA">Peru</option>  <option id="Q_DROPDOWN_-16_PH" value="PH" geo="AP">Philippines</option>  <option id="Q_DROPDOWN_-16_PN" value="PN" geo="EN">Pitcairn</option>  <option id="Q_DROPDOWN_-16_PL" value="PL" geo="EC">Poland</option>  <option id="Q_DROPDOWN_-16_PT" value="PT" geo="EW">Portugal</option>  <option id="Q_DROPDOWN_-16_PR" value="PR" geo="AM">Puerto Rico</option>  <option id="Q_DROPDOWN_-16_QA" value="QA" geo="EC">Qatar</option>  <option id="Q_DROPDOWN_-16_RO" value="RO" geo="EC">Romania</option>  <option id="Q_DROPDOWN_-16_RU" value="RU" geo="EC">Russian Federation</option>  <option id="Q_DROPDOWN_-16_RW" value="RW" geo="EC">Rwanda</option>  <option id="Q_DROPDOWN_-16_RE" value="RE" geo="EW">Réunion</option>  <option id="Q_DROPDOWN_-16_BL" value="BL" geo="AM">Saint Barthélemy</option>  <option id="Q_DROPDOWN_-16_SH" value="SH" geo="EN">Saint Helena, Ascension and Tristan da Cunha</option>  <option id="Q_DROPDOWN_-16_KN" value="KN" geo="AM">Saint Kitts and Nevis</option>  <option id="Q_DROPDOWN_-16_LC" value="LC" geo="AM">Saint Lucia</option>  <option id="Q_DROPDOWN_-16_MF" value="MF" geo="AM">Saint Martin (French Part)</option>  <option id="Q_DROPDOWN_-16_PM" value="PM" geo="EW">Saint Pierre and Miquelon</option>  <option id="Q_DROPDOWN_-16_VC" value="VC" geo="AM">Saint Vincent and the Grenadines</option>  <option id="Q_DROPDOWN_-16_WS" value="WS" geo="AP">Samoa</option>  <option id="Q_DROPDOWN_-16_SM" value="SM" geo="EW">San Marino</option>  <option id="Q_DROPDOWN_-16_ST" value="ST" geo="EC">Sao Tome and Principe</option>  <option id="Q_DROPDOWN_-16_SA" value="SA" geo="LA">Saudi Arabia</option>  <option id="Q_DROPDOWN_-16_SN" value="SN" geo="EC">Senegal</option>  <option id="Q_DROPDOWN_-16_RS" value="RS" geo="EC">Serbia</option>  <option id="Q_DROPDOWN_-16_SC" value="SC" geo="EC">Seychelles</option>  <option id="Q_DROPDOWN_-16_SL" value="SL" geo="EC">Sierra Leone</option>  <option id="Q_DROPDOWN_-16_SG" value="SG" geo="AP">Singapore</option>  <option id="Q_DROPDOWN_-16_SX" value="SX" geo="AM">Sint Maarten (Dutch part)</option>  <option id="Q_DROPDOWN_-16_SK" value="SK" geo="EC">Slovakia</option>  <option id="Q_DROPDOWN_-16_SI" value="SI" geo="EC">Slovenia</option>  <option id="Q_DROPDOWN_-16_SB" value="SB" geo="AP">Solomon Islands</option>  <option id="Q_DROPDOWN_-16_SO" value="SO" geo="EC">Somalia</option>  <option id="Q_DROPDOWN_-16_ZA" value="ZA" geo="EC">South Africa</option>  <option id="Q_DROPDOWN_-16_GS" value="GS" geo="EN">South Georgia and the South Sandwich Islands</option>  <option id="Q_DROPDOWN_-16_SS" value="SS" geo="AM">South Sudan</option>  <option id="Q_DROPDOWN_-16_ES" value="ES" geo="EW">Spain</option>  <option id="Q_DROPDOWN_-16_LK" value="LK" geo="AP">Sri Lanka</option>  <option id="Q_DROPDOWN_-16_SR" value="SR" geo="AM">Suriname</option>  <option id="Q_DROPDOWN_-16_SJ" value="SJ" geo="EN">Svalbard and Jan Mayen</option>  <option id="Q_DROPDOWN_-16_SZ" value="SZ" geo="EC">Swaziland</option>  <option id="Q_DROPDOWN_-16_SE" value="SE" geo="EN">Sweden</option>  <option id="Q_DROPDOWN_-16_CH" value="CH" geo="EN">Switzerland</option>  <option id="Q_DROPDOWN_-16_TW" value="TW" geo="AP">Taiwan</option>  <option id="Q_DROPDOWN_-16_TJ" value="TJ" geo="EC">Tajikistan</option>  <option id="Q_DROPDOWN_-16_TZ" value="TZ" geo="EC">Tanzania, United Republic of</option>  <option id="Q_DROPDOWN_-16_TH" value="TH" geo="AP">Thailand</option>  <option id="Q_DROPDOWN_-16_TL" value="TL" geo="AP">Timor-Leste</option>  <option id="Q_DROPDOWN_-16_TG" value="TG" geo="EC">Togo</option>  <option id="Q_DROPDOWN_-16_TK" value="TK" geo="AP">Tokelau</option>  <option id="Q_DROPDOWN_-16_TO" value="TO" geo="AP">Tonga</option>  <option id="Q_DROPDOWN_-16_TT" value="TT" geo="AM">Trinidad and Tobago</option>  <option id="Q_DROPDOWN_-16_TN" value="TN" geo="EC">Tunisia</option>  <option id="Q_DROPDOWN_-16_TR" value="TR" geo="EC">Turkey</option>  <option id="Q_DROPDOWN_-16_TM" value="TM" geo="EC">Turkmenistan</option>  <option id="Q_DROPDOWN_-16_TC" value="TC" geo="AM">Turks and Caicos Islands</option>  <option id="Q_DROPDOWN_-16_TV" value="TV" geo="AP">Tuvalu</option>  <option id="Q_DROPDOWN_-16_UG" value="UG" geo="EC">Uganda</option>  <option id="Q_DROPDOWN_-16_UA" value="UA" geo="EC">Ukraine</option>  <option id="Q_DROPDOWN_-16_AE" value="AE" geo="EC">United Arab Emirates</option>  <option id="Q_DROPDOWN_-16_GB" value="GB" geo="EN">United Kingdom</option>  <option id="Q_DROPDOWN_-16_US" value="US" geo="AM">United States</option>  <option id="Q_DROPDOWN_-16_UM" value="UM" geo="AM">United States Minor Outlying Islands</option>  <option id="Q_DROPDOWN_-16_UY" value="UY" geo="LA">Uruguay</option>  <option id="Q_DROPDOWN_-16_UZ" value="UZ" geo="EC">Uzbekistan</option>  <option id="Q_DROPDOWN_-16_VU" value="VU" geo="EW">Vanuatu</option>  <option id="Q_DROPDOWN_-16_VE" value="VE" geo="LA">Venezuela, Bolivarian Republic of</option>  <option id="Q_DROPDOWN_-16_VN" value="VN" geo="AP">Viet Nam</option>  <option id="Q_DROPDOWN_-16_VG" value="VG" geo="AM">Virgin Islands, British</option>  <option id="Q_DROPDOWN_-16_VI" value="VI" geo="AM">Virgin Islands, U.S.</option>  <option id="Q_DROPDOWN_-16_WF" value="WF" geo="EW">Wallis and Futuna</option>  <option id="Q_DROPDOWN_-16_EH" value="EH" geo="LA">Western Sahara</option>  <option id="Q_DROPDOWN_-16_YE" value="YE" geo="EC">Yemen</option>  <option id="Q_DROPDOWN_-16_ZM" value="ZM" geo="EC">Zambia</option>  <option id="Q_DROPDOWN_-16_ZW" value="ZW" geo="EC">Zimbabwe</option>  <option id="Q_DROPDOWN_-16_AX" value="AX" geo="EN">Åland Islands</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                          </div>
+                        </li>
+                        <li class="two-fields">
+                          <div class="left-field first-name-box">
+                            <p class="error-message error-inactive"><%= __('contact_form.field_required') %></p>
+                            <p><%= __('contact_form.first_name') %>  <span class="form-important">*</span></p>
+                            <input type="text" name="first-name" maxlength="105" placeholder="">
+                          </div>
+                          <div class="right-field last-name-box">
+                            <p class="error-message error-inactive"><%= __('contact_form.field_required') %></p>
+                            <p><%= __('contact_form.last_name') %>  <span class="form-important">*</span></p>
+                            <input type="text" name="last-name" maxlength="105" placeholder="">
+                          </div>
+                        </li>
+                        <li>
+                          <p class="error-message error-inactive"><%= __('contact_form.field_required') %></p>
+                          <p><%= __('contact_form.email') %>  <span class="form-important">*</span></p>
+                          <input type="text" name="email" maxlength="105" placeholder="">
+                        </li>
+                        <li>
+                          <p class="error-message error-inactive"><%= __('contact_form.field_required') %></p>
+                          <p><%= __('contact_form.phone') %>  <span class="form-important">*</span></p>
+                          <input type="text" id="phone-field" name="phone" maxlength="105" placeholder="">
+                        </li>
+                        <li>
+                          <p class="error-message error-inactive"><%= __('contact_form.field_required') %></p>
+                          <p><%= __('contact_form.company') %>  <span class="form-important">*</span></p>
+                          <input type="text" name="company" maxlength="105" placeholder="">
+                        </li>
+                        <li class="textarea-box">
+                          <p><%= __('contact_form.interest') %></p>
+                          <textarea name="interest" rows="3" cols="50"></textarea>
+                          <br>
+                        </li>
+                        <li class="privacy-check">
+                          <span class="gray-text"></span>
+                          <br>
+                        </li>
+                        <li>
+                          <button id="submit-btn" type="submit"><%= __('contact_form.submit') %></button>
+                        </li>
+                      </ul>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var REQUIRED_FIELD = "<%= __('contact_form.field_required') %>";
+      var VALID_EMAIL = "<%= __('contact_form.valid_email') %>";
+      var VALID_PHONE = "<%= __('contact_form.valid_phone') %>";
+      var SUCCESS = "<%= __('contact_form.success') %>";
+      var ERROR = "<%= __('contact_form.error') %>";
+
+     $(document).ready(function(){
+      var text = "<%= __('contact_form.accept_text') %>";
+      var link = text.replace("<%= __('contact_form.accept_link_on') %>", "<a href='https://www.ibm.com/privacy/us/en/'><%= __('contact_form.accept_link_on') %></a>");
+      $('.privacy-check span').html(link);
+     });
+    </script>
+    <script src="/javascripts/form.js"></script>
+  </body>
+</html>
