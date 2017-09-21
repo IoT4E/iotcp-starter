@@ -2,7 +2,7 @@
   {
     "id": "e98d6c1b.3f289",
     "type": "tab",
-    "label": "IoT4E Notification Flow"
+    "label": "Trigger notifications"
   },
   {
     "id": "982404b8.400568",
@@ -294,7 +294,7 @@
     "type": "comment",
     "z": "982404b8.400568",
     "name": "API details",
-    "info": "###### *What is this?*\n\nThis node will create a RESTful API that can\nbe used as a pre-registration action to validate\nappliance metadata.\n\n---\n\n###### *How do I use it?*\n\nIn your IoT for Electronics dashboard,\nyou should see a section called\n**\"Configure Appliance Registration\"**.\nConfigure the *Pre-registration* fields with\nthe following information:\n\n- **Method:** POST  \n- **URL:** https://<your_app_name>.mybluemix.net/api/validate\n\n**_Note:_** This API is not protected, so you\ncan leave the **_username_** and **_password_**\nfields blank.\n\n---\n\n###### *What now?*\n\nWhen you are registering an appliance,\na validation action will be triggered prior\nto the registration process. It will get the\nappliance metadata from Watson IoT Platform\nand will compare to the values you defined in\nthe response object (see\n**_Customize validations_** node for more info).\n\nIf all the attributes are successfully\nvalidated, then the registration process\ncontinues. If any of the given attributes\nfails during validation, the registration\nprocess is aborted.",
+    "info": "###### *What is this?*\n\nThis node will create a RESTful API that can\nbe used as a pre-registration action to validate\nappliance metadata.\n\n---\n\n###### *How do I use it?*\n\nA default pre-registration URL has been set up for your organization. For more information, see your Watson IoT for Connected Products welcome letter.   \n\nTo set up additional pre-registration URLs for your organization, provide the following information to the support contact that is listed in your welcome letter:\n\n- **Method:** POST  \n- **URL:** https://<your_app_name>.mybluemix.net/api/validate\n- **Username and password** if required by the API.\n\n\n---\n\n###### *What now?*\n\nWhen you are registering an appliance,\na validation action will be triggered prior\nto the registration process. It will get the\nappliance metadata from Watson IoT Platform\nand will compare to the values you defined in\nthe response object (see\n**_Customize validations_** node for more info).\n\nIf all the attributes are successfully\nvalidated, then the registration process\ncontinues. If any of the given attributes\nfails during validation, the registration\nprocess is aborted.",
     "x": 80,
     "y": 40,
     "wires": []
@@ -391,7 +391,7 @@
     "type": "comment",
     "z": "982404b8.400568",
     "name": "API details",
-    "info": "###### *What is this?*\n\nThis node will create a RESTful API that can\nbe used as a post-registration action to send\na command to the appliances after registration.\n\n---\n\n###### *How do I use it?*\n\nIn your IoT for Electronics dashboard,\nyou should see a section called\n**\"Configure Appliance Registration\"**.\nConfigure the *Post-registration* fields with\nthe following information:\n\n- **Method:** POST  \n- **URL:** https://<your_app_name>.mybluemix.net/api/sendCommand\n\n**_Note:_** This API is not protected, so you\ncan leave the **_username_** and **_password_**\nfields blank.\n\n---\n\n###### *What now?*\n\nAfter the registration process, a command\nwill be sent using the MQTT protocol to all the\nappliances that were successfully registered\n(see **_Command details_** node for more\ninfo).",
+    "info": "###### *What is this?*\n\nThis node will create a RESTful API that can\nbe used as a post-registration action to send\na command to the appliances after registration.\n\n---\n\n###### *How do I use it?*\n\nA default post-registration URL has been set up for your organization. For more information, see your Watson IoT for Connected Products welcome letter.   \n\nTo set up additional post-registration URLs for your organization, provide the following information to the support contact that is listed in your welcome letter:\n\n- **Method:** POST  \n- **URL:** https://<your_app_name>.mybluemix.net/api/validate\n- **Username and password** if required by the API.\n\n\n---\n\n###### *What now?*\n\nAfter the registration process, a command\nwill be sent using the MQTT protocol to all the\nappliances that were successfully registered\n(see **_Command details_** node for more\ninfo).",
     "x": 80,
     "y": 260,
     "wires": []
