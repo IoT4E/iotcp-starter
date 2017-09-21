@@ -42,8 +42,12 @@
          "basic-auth": "",
          "async":"",
          "bluemix-appid": "",
-         "express-session":"", 
-         "pug":""
+         "express-session":"",
+         "pug":"",
+         "node-red-contrib-graphs":"0.3.5",
+         "node-red-contrib-ibm-watson-iot":"0.x",
+         "node-red-node-cf-cloudant":"0.x"
+
     },
     "repository": {}
 }
