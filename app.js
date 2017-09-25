@@ -1412,7 +1412,7 @@ request({ // check rti mode
                "description":"This action triggers the IoT for Electronics Node-RED notification flow.",
                "type":"node-red",
                "fields":{
-                   "url": defineBoiler !== undefined ? "https://"+boilerName + "."+ defineBoiler +".mybluemix.net/api/rti-alert" : "https://"+boilerName + ".mybluemix.net/api/rti-alert",				   
+                   "url": defineBoiler !== undefined ? "https://"+boilerName + "."+ defineBoiler +".mybluemix.net/api/rti-alert" : "https://"+boilerName + ".mybluemix.net/api/rti-alert",
                    "method":"POST",
                    "username":"",
                    "password":"",
@@ -1686,7 +1686,7 @@ iotAppMonitor = require('./lib/iotAppMonitorServer')(server);
 
 var settings = {
     httpAdminRoot:"/red",
-    httpNodeRoot: "/api",
+    httpNodeRoot: "/",
     flowFile: path.join(__dirname, 'flows/notificationFlow.json'),
     functionGlobalContext: {
 		process: process // get vcaps
