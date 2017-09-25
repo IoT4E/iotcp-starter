@@ -1,25 +1,21 @@
 <html>
   <head>
     <title><%= __('main_page.page_title') %></title>
-  
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="/styles/style.css"/>
-  
     <script src="/socket.io/socket.io.js"></script>
     <script src="/javascripts/iotAppMonitorClient.js"></script>
     <script src="/jquery/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/analytics/bluemix-analytics.js"></script>
     <script type="text/javascript"> digitalData = {page: {pageInfo: {pageID: "IOTELECTRONICS"}}} </script>
-  
     <script type="text/javascript">
       //check github latest released version and compare with existed
       $(document).ready(function () {
         GetLatestReleaseInfo();
       });
-    
       function GetLatestReleaseInfo() {
         $.ajaxSetup({
           headers : {
@@ -32,7 +28,7 @@
           var downloadCount = 0;
           var currentBuildId = "v0.0.0";
           //var latestBuildId = release.id ? release.id:0;
-          var latestBuildId = release.tag_name ? release.tag_name : latestBuildId;       
+          var latestBuildId = release.tag_name ? release.tag_name : latestBuildId;
           if (currentBuildId>=latestBuildId) {
             $("#githubupdatelabel").show();
             $("#githubupdatelabel").text("IoT for Electronics Starter (" + currentBuildId +")");
@@ -102,7 +98,7 @@
             <p><%= __('main_page.simulate_appliance_p1') %></p>
             <br/>
             <p><%= __('main_page.simulate_appliance_p2') %></p>
-            <a href="https://new-console.ng.bluemix.net/docs/starters/IoTElectronics-starter/iotelectronics_overview.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/> <%= __('main_page.learn_more') %> </a>
+            <a href="https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/getting_started/iot4cpgettingstarted.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/> <%= __('main_page.learn_more') %> </a>
           </div>
         </section>
         <section name="description-selection-box-2" class="col-xs-12 col-md-10 content description-box hidden">
@@ -117,7 +113,7 @@
             <br> <br>
             <p><%= __('main_page.consumer_app_p3') %></p>
             <p><%= __('main_page.consumer_app_p4') %></p>
-            <a href="https://new-console.ng.bluemix.net/docs/starters/IoTElectronics-starter/iotelectronics_overview.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/> <%= __('main_page.learn_more') %> </a>
+            <a href="https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/getting_started/iot4cpgettingstarted.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/> <%= __('main_page.learn_more') %> </a>
           </div>
         </section>
       </div>
@@ -142,7 +138,7 @@
                   <p><%= __('main_page.connect_app_p2') %></p>
                 </h3>
                 <br/>
-                <h3><strong><a href="https://new-console.ng.bluemix.net/docs/starters/IoTElectronics-starter/iotelectronics_config_mobile.html" target="_blank"> <%= __('main_page.mobile_download_more_details') %> </a></strong></h3>
+                <h3><strong><a href="https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/getting_started/iot4cpgettingstarted.html#getting_started" target="_blank"> <%= __('main_page.mobile_download_more_details') %> </a></strong></h3>
               </div>
             </div>
           </section>
@@ -200,7 +196,7 @@
           <div class= "col-xs-12 col-md-6  textDescription">
             <h2 class="linksTitle"><%= __('main_page.manage_devices') %></h2>
             <p><%= __('main_page.iotp_description_part1') %><strong> <%= __('main_page.iot_platform') %></strong> <%= __('main_page.iotp_description_part2') %><strong> <%= __('main_page.iot_launch') %></strong></p>
-            <a href="https://console.bluemix.net/docs/starters/IoTElectronics-starter/iotelectronics_dashboard.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/><%= __('main_page.docs') %></a>
+            <a href="https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/getting_started/iot4cp_dashboard.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/><%= __('main_page.docs') %></a>
             <a href="<%= platformDashboard %>" target="_blank"><img src="/images/LearnMoreArrow.svg"/><%= __('main_page.bluemix_dashboard') %></a>
           </div>
         </div>
@@ -214,13 +210,12 @@
         <div class= "col-xs-12 col-md-6 textDescription">
           <h2 class="linksTitle"><%= __('main_page.devices_node_red') %></h2>
           <p><%= __('main_page.node_red_description') %></p>
-          <a href="https://console.bluemix.net/docs/starters/IoTElectronics-starter/iotelectronics_nodeRED_overview.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/><%= __('main_page.docs') %></a>
+          <a href="https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/getting_started/iot4cp_nodeRED_overview.html" target="_blank"><img src="/images/LearnMoreArrow.svg"/><%= __('main_page.docs') %></a>
           <a id="nodeRedLink"><img src="/images/LearnMoreArrow.svg"/><%= __('main_page.node_red_sample') %></a>
         </div>
       </div>
       </div>
     </footer>
-  
     <div class="alert-messages">
       <div class="alert alert-success" id="alertDeviceDeleted">
         <p><%= __('main_page.device_deleted') %></p>
@@ -230,9 +225,7 @@
         <p></p>
       </div>
     </div>
-  
     <a id="formButton" href="contact" target="_blank"><%= __('main_page.contact_electronics') %></a>
-  
     <script>
       var DEVICE_DELETED_MSG = "<%= __('main_page.device_deleted') %>";
       var TIMEOUT_LIST = "<%= __('main_page.timeout_list') %>";
@@ -241,4 +234,3 @@
     <script src="/javascripts/index.js"></script>
   </body>
   </html>
-  
