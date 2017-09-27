@@ -12,7 +12,7 @@
   {
     "id": "df3d1726.eb4da8",
     "type": "tab",
-    "label": "Simulate device"
+    "label": "Device Control"
   },
   {
     "id": "39f5521e.0bbf4e",
@@ -529,8 +529,8 @@
     "id": "e2864759.0e3338",
     "type": "comment",
     "z": "df3d1726.eb4da8",
-    "name": "Device Simulator - Washing Machine",
-    "info": "The device simulator uses the IoT for Connected Products starter app to simulate a washing machine. Click Send startWashing command to send an IoT device command to the simulated washer to start the wash cycle.",
+    "name": "Device Control - Washing Machine",
+    "info": "The device control uses the IoT for Connected Products starter app to simulate a washing machine. Click Send startWashing command to send an IoT device command to the simulated washer to start the wash cycle.",
     "x": 217,
     "y": 101,
     "wires": []
@@ -859,7 +859,7 @@
     "type": "comment",
     "z": "39f5521e.0bbf4e",
     "name": "Query for and display historical device data",
-    "info": "On the Query node change the \njson payload content where:\n\ndeviceId - `your device id created in starter app`\n\neg. {\"query\":\"deviceId:8332617F277B AND \ndeviceType:washingMachine\", \"sort\":\"timestamp<string>\"}\n\n",
+    "info":"This sample flow builds on the simulated device flow and lets you pull in historical IoT device data from Cloudant NoSQL DB and display the collected data in a graphic dashboard.",
     "x": 175,
     "y": 98,
     "wires": []
