@@ -250,12 +250,12 @@
           switch(failureType){
             case 'Strong vibration':
               failureIndex = 1;
-              text = "150";
+              text = 150;
               obj['vibration'] = text;
               break;
             case 'Water leak':
               failureIndex = 2;
-              text = "30";
+              text = 30;
               obj['waterPressure'] = text;
               break;
               case 'Noise':
@@ -398,7 +398,7 @@
             var data = {status: "Working", currentCycle: "End"};
             updatePlatformStatus(data);
             setTimeout(function(){updateStatus('Ready');},3000);
-            break;            
+            break;
         }
     }
 
