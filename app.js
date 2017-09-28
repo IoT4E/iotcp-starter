@@ -169,6 +169,44 @@ var services = JSON.parse(process.env.VCAP_SERVICES)
 var application = JSON.parse(process.env.VCAP_APPLICATION)
 var currentOrgID = iotfCredentials["org"];
 
+
+/***************************************************************/
+/* check starter version currentStarterVersion = 'v0.0.0'			 */
+/***************************************************************/
+
+const currentStarterVersion = 'v0.0.0';
+GetLatestReleaseInfo = function ()
+{
+	var options =
+	{
+		url: ('https://api.github.com/repos/IoT4E/iotforelectronics-starter/releases/latest'),
+		method: 'GET',
+		headers: {
+    		'Content-Type': 'application/json',
+    		'Authorization' : 'Basic Y2thb0B1cy5pYm0uY29tOlE3RW5yc09kaA==',
+    		'User-Agent': 'IBM-IoTCP-starter'
+  		}
+	};
+	request(options, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+	    	try{
+	    	    var release = JSON.parse(body);
+	    	    if(release.hasOwnProperty('tag_name')){
+                    var latestStarterVersion = release.tag_name;
+                    if (latestStarterVersion>currentStarterVersion){
+                        console.log('Update required: there is a new starter version '+ latestStarterVersion + ' released.')
+                    } 
+                }
+	    	}
+	    	catch (e){
+	    	    //do nothing
+	    	}
+        	return;
+	    }
+  });
+}
+GetLatestReleaseInfo();
+
 /***************************************************************/
 /* Set up AppID & passport                            */
 /***************************************************************/
