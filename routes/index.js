@@ -15,10 +15,15 @@ var router = express.Router();
 var appEnv = require("cfenv").getAppEnv();
 var request = require('request');
 
+VCAP_SERVICES = {};
+if(process.env.VCAP_SERVICES)	VCAP_SERVICES = JSON.parse(process.env.VCAP_SERVICES);
+var iotf_host = VCAP_SERVICES["iotf-service"][0]["credentials"].http_host;
+
 /* GET home page. */
 router.get('/', function(req, res) {
 
-	var platformDashboard = 'https://new-console.ng.bluemix.net/apps/' + appEnv['app'].application_id + '?paneId=connected-objects';
+	//var platformDashboard = 'https://new-console.ng.bluemix.net/apps/' + appEnv['app'].application_id + '?paneId=connected-objects';
+	var platformDashboard = 'https://'+iotf_host+'/';
 	var mobileDownload = req.__('main_page.download_app_p2.text');
 	var mobileDownloadLink = req.__('main_page.download_app_p2.link_on');
 	var mobileInstructions = req.__('main_page.instructions.text');
