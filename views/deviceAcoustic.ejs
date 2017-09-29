@@ -1,17 +1,3 @@
-<!--
-/********************************************************* {COPYRIGHT-TOP} ***
-* IBM Confidential
-* OCO Source Materials
-* IoT for Electronics - SVL720160500
-*
-* (C) Copyright IBM Corp. 2016  All Rights Reserved.
-*
-* The source code for this program is not published or otherwise
-* divested of its trade secrets, irrespective of what has been
-* deposited with the U.S. Copyright Office.
-********************************************************* {COPYRIGHT-END} **/
--->
-
 <html>
   <head>
     <title><%= __('appliance_page.page_title') %></title>
@@ -107,6 +93,7 @@
       <audio id='audio' src="/sounds/ZOOM0015_MONO_inlet.wav" type="audio/wav" preload="auto" ></audio>
     </div>
     <script type="text/javascript">
+    var triggeredFromUI = false;
     var firstLoad = true;
     var xhr;
     var player;
@@ -212,12 +199,21 @@
             $("#audio").attr('src','/sounds/' + audios[index]);
             $('#audio')[0].play();
             playing = true;
+            triggeredFromUI = true;
 
             break;
           case "<%= __('appliance_page.stop') %>":
              $('.problem-machine-icons p').eq(1).removeClass("enabled");
              $('.problem-machine-icons p').eq(3).removeClass("enabled");
-             $('#actionWasher').text("<%= __('appliance_page.start') %>");
+
+              $.ajax({
+                url: '/washingMachine/<%= deviceId %>/stopWashing',
+                type: 'PUT',
+                success: function() {
+                  $('#actionWasher').text("<%= __('appliance_page.start') %>");
+                }
+              });
+
              stopAudio();
              updateStatus('Stopped');
              break;
@@ -265,11 +261,12 @@
 
 
           if(failureType != 'Noise'){
-            var data = JSON.parse(JSON.stringify(obj));
+            var data = JSON.stringify(obj);
             $.ajax({
               url: '/washingMachine/<%= deviceId %>/setAttributes',
               type: 'PUT',
               data: data,
+              contentType: "application/json",
               success: function() {
                 $('.washer-content .washer-text p strong').eq(0).text("<%= __('appliance_page.failure') %>");
                 if(failureIndex > 0){
@@ -305,13 +302,14 @@
         $.ajax({
           url: '/washingMachine/<%= deviceId %>/setAttributes',
           type: 'PUT',
-          data: {
+          data: JSON.stringify({
             status: "Ready",
             currentCycle: "Stopped",
             failureType: "",
-            vibration: "80",
-            waterPressure: "70"
-          }
+            vibration: 80,
+            waterPressure: 70
+          }),
+          contentType: "application/json"
         });
       });
       // Delete Washer
@@ -428,8 +426,8 @@
       $.ajax({
         url: '/washingMachine/<%= deviceId %>/setAttributes',
         type: 'PUT',
-        contentType: 'application/json',
-        data: data
+        data: data,
+        contentType: "application/json"
       });
     }
 
@@ -656,6 +654,23 @@
           }
         } else {
           if(device.status === 'Working'){
+
+            if(!triggeredFromUI){
+              $.ajax({
+                url: '/washingMachine/<%= deviceId %>/stopWashing',
+                type: 'PUT',
+                success: function() {
+                  triggeredFromUI = true;
+                  $('.problem-machine-icons p').eq(1).addClass("enabled");
+                  $('.problem-machine-icons p').eq(3).addClass("enabled");
+                  $('#actionWasher').text("<%= __('appliance_page.stop') %>");
+                  $("#audio").attr('src','/sounds/' + audios[index]);
+                  $('#audio')[0].play();
+                  playing = true;
+                }
+              });
+            }
+
             $('#actionWasher').text("<%= __('appliance_page.stop') %>");
             $('.problem-machine-icons p').eq(1).addClass("enabled");
             $('.problem-machine-icons p').eq(3).addClass("enabled");
@@ -669,14 +684,30 @@
             }
           } else {
             if(!playing){
+              triggeredFromUI = false;
               $('#actionWasher').text("<%= __('appliance_page.start') %>");
               $('.problem-machine-icons p').eq(1).removeClass("enabled");
               $('.problem-machine-icons p').eq(3).removeClass("enabled");
                 switch(device.status){
                   case 'Ready':        $('.washer-content .washer-text ul li strong').eq(0).text("<%= __('appliance_page.ready') %>"); break;
                   case 'Stopped':      $('.washer-content .washer-text ul li strong').eq(0).text("<%= __('appliance_page.stopped') %>"); break;
-                  case 'End':          $('.washer-content .washer-text ul li strong').eq(0).text("<%= __('appliance_page.end') %>"); break;
+				          case 'End':          $('.washer-content .washer-text ul li strong').eq(0).text("<%= __('appliance_page.end') %>"); break;
                 }
+              } else if(device.status === 'Stopped'){
+               $('.problem-machine-icons p').eq(1).removeClass("enabled");
+               $('.problem-machine-icons p').eq(3).removeClass("enabled");
+
+                $.ajax({
+                  url: '/washingMachine/<%= deviceId %>/stopWashing',
+                  type: 'PUT',
+                  success: function() {
+                    $('#actionWasher').text("<%= __('appliance_page.start') %>");
+                  }
+                });
+
+               stopAudio();
+               updateStatus('Stopped');
+               triggeredFromUI = false;
               }
             }
           $('.washer-content .washer-text ul li strong').eq(1).text(device.vibration + " <%= __('appliance_page.vibration_unit') %>");
