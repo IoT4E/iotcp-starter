@@ -530,7 +530,7 @@
     "type": "comment",
     "z": "df3d1726.eb4da8",
     "name": "Device Control - Washing Machine",
-    "info": "The device control uses the IoT for Connected Products starter app to simulate a washing machine. Click Send startWashing command to send an IoT device command to the simulated washer to start the wash cycle.",
+    "info": "The device simulator uses the IoT for Connected Products starter app to simulate management of a washing machine and its possible outputs, such as washing cycle status and failures.",
     "x": 217,
     "y": 101,
     "wires": []
