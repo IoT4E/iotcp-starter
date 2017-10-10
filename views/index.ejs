@@ -11,57 +11,6 @@
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/analytics/bluemix-analytics.js"></script>
     <script type="text/javascript"> digitalData = {page: {pageInfo: {pageID: "IOTELECTRONICS"}}} </script>
-    <script type="text/javascript">
-      //check github latest released version and compare with existed
-      $(document).ready(function () {
-        GetLatestReleaseInfo();
-      });
-      function GetLatestReleaseInfo() {
-        $.ajaxSetup({
-          headers : {
-            'Authorization' : 'Basic Y2thb0B1cy5pYm0uY29tOlE3RW5yc09kaA==',
-            'Content-Type' : 'application/json'
-          }
-        });
-        $.getJSON("https://api.github.com/repos/IoT4E/iotforelectronics-starter/releases/latest").done(function (release) {
-          var asset = release.assets[0];
-          var downloadCount = 0;
-          var currentBuildId = "v0.0.0";
-          //var latestBuildId = release.id ? release.id:0;
-          var latestBuildId = release.tag_name ? release.tag_name : latestBuildId;
-          if (currentBuildId>=latestBuildId) {
-            $("#githubupdatelabel").show();
-            $("#githubupdatelabel").text("IoT for Electronics Starter (" + currentBuildId +")");
-            $("#githubupdatelabel").css('color', '#4581E0');
-            $("#githubupdatelabel").css('font-size', '10pt');
-            $("#githubupdatebutton").hide();
-          } else {
-            var oneHour = 60 * 60 * 1000;
-            var oneDay = 24 * oneHour;
-            var dateDiff = new Date() - new Date(release.published_at);
-            var timeAgo;
-            if (dateDiff < oneDay) {
-              timeAgo = (dateDiff / oneHour).toFixed(1) + " hours ago";
-            } else {
-              timeAgo = (dateDiff / oneDay).toFixed(1) + " days ago";
-            }
-            var releaseInfo = "An updated IoT for Electronics Starter (" + release.tag_name + ") was released " + timeAgo + ". See ";
-            $("#githubupdatelabel").show();
-            $("#githubupdatelabel").text(releaseInfo);
-            $("#githubupdatelabel").css('color', 'red');
-            $("#githubupdatelabel").css('font-size', '10pt');
-            $("#githubupdatebutton").show();
-            $("#githubupdatebutton").text("update instruction");
-            $("#githubupdatebutton").attr("href", release.html_url);  //this url should be changed to the instruction
-          }
-        });
-      }
-    </script>
-    <label id = 'githubupdatelabel' style="font-size:10pt; margin-top: 0px;margin-bottom: 0px;margin-left: 40px;"></label>
-    <!--
-      <input id = 'githubupdatebutton' type="button" value ="update" style="background-color:green;font-size:7pt;color: #4581E0;border:2px solid #336600;padding:3px"/>
-    -->
-    <a id = 'githubupdatebutton' style=" color: #4581E0; font-size:10pt; margin-top: 0px;margin-bottom: 0px;margin-left: 0px;"></a>
   </head>
   <body>
     <h4 class="bluemix-bar"><%= __('main_page.top_title') %></h4>

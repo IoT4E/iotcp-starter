@@ -2,12 +2,22 @@
   {
     "id": "e98d6c1b.3f289",
     "type": "tab",
-    "label": "IoT4E Notification Flow"
+    "label": "Trigger notifications"
   },
   {
     "id": "982404b8.400568",
     "type": "tab",
     "label": "Pre-Registration Samples"
+  },
+  {
+    "id": "df3d1726.eb4da8",
+    "type": "tab",
+    "label": "Device Control"
+  },
+  {
+    "id": "39f5521e.0bbf4e",
+    "type": "tab",
+    "label": "Display historical data"
   },
   {
     "id": "6c7da22.40c285c",
@@ -16,6 +26,17 @@
     "info": "",
     "in": [],
     "out": []
+  },
+  {
+    "id": "8878b0ea.04f94",
+    "type": "ibmiot",
+    "z": "",
+    "name": "",
+    "keepalive": "60",
+    "serverName": ".messaging.internetofthings.ibmcloud.com",
+    "cleansession": true,
+    "appId": "",
+    "shared": false
   },
   {
     "id": "c2d400c3.ce2738",
@@ -284,7 +305,7 @@
     "type": "comment",
     "z": "982404b8.400568",
     "name": "API details",
-    "info": "###### *What is this?*\n\nThis node will create a RESTful API that can\nbe used as a pre-registration action to validate\nappliance metadata.\n\n---\n\n###### *How do I use it?*\n\nIn your IoT for Electronics dashboard,\nyou should see a section called\n**\"Configure Appliance Registration\"**.\nConfigure the *Pre-registration* fields with\nthe following information:\n\n- **Method:** POST  \n- **URL:** https://<your_app_name>.mybluemix.net/api/validate\n\n**_Note:_** This API is not protected, so you\ncan leave the **_username_** and **_password_**\nfields blank.\n\n---\n\n###### *What now?*\n\nWhen you are registering an appliance,\na validation action will be triggered prior\nto the registration process. It will get the\nappliance metadata from Watson IoT Platform\nand will compare to the values you defined in\nthe response object (see\n**_Customize validations_** node for more info).\n\nIf all the attributes are successfully\nvalidated, then the registration process\ncontinues. If any of the given attributes\nfails during validation, the registration\nprocess is aborted.",
+    "info": "###### *What is this?*\n\nThis node will create a RESTful API that can\nbe used as a pre-registration action to validate\nappliance metadata.\n\n---\n\n###### *How do I use it?*\n\nA default pre-registration URL has been set up for your organization. For more information, see your Watson IoT for Connected Products welcome letter.   \n\nTo set up additional pre-registration URLs for your organization, provide the following information to the support contact that is listed in your welcome letter:\n\n- **Method:** POST  \n- **URL:** https://<your_app_name>.mybluemix.net/api/validate\n- **Username and password** if required by the API.\n\n\n---\n\n###### *What now?*\n\nWhen you are registering an appliance,\na validation action will be triggered prior\nto the registration process. It will get the\nappliance metadata from Watson IoT Platform\nand will compare to the values you defined in\nthe response object (see\n**_Customize validations_** node for more info).\n\nIf all the attributes are successfully\nvalidated, then the registration process\ncontinues. If any of the given attributes\nfails during validation, the registration\nprocess is aborted.",
     "x": 80,
     "y": 40,
     "wires": []
@@ -381,7 +402,7 @@
     "type": "comment",
     "z": "982404b8.400568",
     "name": "API details",
-    "info": "###### *What is this?*\n\nThis node will create a RESTful API that can\nbe used as a post-registration action to send\na command to the appliances after registration.\n\n---\n\n###### *How do I use it?*\n\nIn your IoT for Electronics dashboard,\nyou should see a section called\n**\"Configure Appliance Registration\"**.\nConfigure the *Post-registration* fields with\nthe following information:\n\n- **Method:** POST  \n- **URL:** https://<your_app_name>.mybluemix.net/api/sendCommand\n\n**_Note:_** This API is not protected, so you\ncan leave the **_username_** and **_password_**\nfields blank.\n\n---\n\n###### *What now?*\n\nAfter the registration process, a command\nwill be sent using the MQTT protocol to all the\nappliances that were successfully registered\n(see **_Command details_** node for more\ninfo).",
+    "info": "###### *What is this?*\n\nThis node will create a RESTful API that can\nbe used as a post-registration action to send\na command to the appliances after registration.\n\n---\n\n###### *How do I use it?*\n\nA default post-registration URL has been set up for your organization. For more information, see your Watson IoT for Connected Products welcome letter.   \n\nTo set up additional post-registration URLs for your organization, provide the following information to the support contact that is listed in your welcome letter:\n\n- **Method:** POST  \n- **URL:** https://<your_app_name>.mybluemix.net/api/validate\n- **Username and password** if required by the API.\n\n\n---\n\n###### *What now?*\n\nAfter the registration process, a command\nwill be sent using the MQTT protocol to all the\nappliances that were successfully registered\n(see **_Command details_** node for more\ninfo).",
     "x": 80,
     "y": 260,
     "wires": []
@@ -503,5 +524,479 @@
         "1ed7c437.47be3c"
       ]
     ]
+  },
+  {
+    "id": "e2864759.0e3338",
+    "type": "comment",
+    "z": "df3d1726.eb4da8",
+    "name": "Device Control - Washing Machine",
+    "info": "The device simulator uses the IoT for Connected Products starter app to simulate management of a washing machine and its possible outputs, such as washing cycle status and failures. Click Send startWashing command to send an IoT device command to the simulated washer to start the wash cycle.",
+    "x": 217,
+    "y": 101,
+    "wires": []
+  },
+  {
+    "id": "b3b2c220.c1562",
+    "type": "comment",
+    "z": "df3d1726.eb4da8",
+    "name": "Step 1. Configure target",
+    "info": "For detailed steps, see [Using Node-RED for device simulation](https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/guides/node-red-samples.html) in the Watson IoT for Connected Products documentation.\n\nBefore you begin: \n1. In the Watson IoT Platform dashboard, [generate API key and connect application](https://console-regional.ng.bluemix.net/docs/services/IoT/platform_authorization.html#connecting-applications)  \nMake a note of the apikey and api token that are returned. \n2. In the starter app UI, get the device ID for a simulated washing machine. For information, see [Using the starter](https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/getting_started/iot4cpgettingstarted.html).\n\nDo the following steps in Node-RED.\n1. Edit the **Send to IBM IoT Platform** node.\n2. Set authentication to API key.\n3. Create a new API Key with the following properties:\n   - The apikey and api token.\n   - Server name: `{orgid}.messaging.internetofthings.ibmcloud.com`.   \n   Where orgid is the Watson IoT Platform organization ID.\n5. Set Output Type to `Device Command`\n4. Set device type to `washingMachine` and device ID to the ID of the simulated washer machine. \n6. Set Command Type to `startWashing`\n7. Set format to `JSON`\n8. Set data to `data`\n5. Click **Done**.\n6. Click **Deploy**.\n\n\n\n\n",
+    "x": 750,
+    "y": 113,
+    "wires": []
+  },
+  {
+    "id": "96a13ba6.8e14e8",
+    "type": "comment",
+    "z": "df3d1726.eb4da8",
+    "name": "Step 2. Click to send command",
+    "info": "To automatically send data:\n1. Edit the **Send startWashing command** / ** Send stopWashing command** node.\n2. Change *Repeat* from `none` to the interval of your choice.\n3. Click **Done**.\n4. Click **Deploy**.\n",
+    "x": 207,
+    "y": 221,
+    "wires": []
+  },
+  {
+    "id": "750ab8da.8a1e58",
+    "type": "comment",
+    "z": "df3d1726.eb4da8",
+    "name": "Current wash cycle",
+    "info": "The current wash cycle subscribes to and processes device data events from Watson IoT Platform for the simulated washing machine.\n\nThe status outputs are: \n- The current wash cycle\n- Strong vibration failure alert\n- Water leak alert\n \nUse the Send startWashing command node to start a wash.\nUse the starter app dashboard to introduce failures.\n",
+    "x": 162,
+    "y": 393,
+    "wires": []
+  },
+  {
+    "id": "6c837ed7.e1c5a",
+    "type": "comment",
+    "z": "df3d1726.eb4da8",
+    "name": "Step 3: Configure connector",
+    "info": "For detailed steps, see [Using Node-RED for device simulation](https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/guides/node-red-samples.html) in the Watson IoT for Connected Products documentation.\n\n1. Edit the **IBM IoT App In** node.\n2. Set authentication to API key.\n3. In the **API Key* field, select the API key name that you created in step 1.\n4. Enter the same device type and device ID as in step 1.\n5. Choose to receive All events.\n6. Click **Done**.\n7. Click **Deploy**.",
+    "x": 201,
+    "y": 537,
+    "wires": []
+  },
+  {
+    "id": "8d9821a.8d825e",
+    "type": "comment",
+    "z": "df3d1726.eb4da8",
+    "name": "Step 4: View current cycle",
+    "info": "For detailed steps, see [Using Node-RED for device simulation](https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/guides/node-red-samples.html) in the Watson IoT for Connected Products documentation.\n\nTest the Current Cycle of Washing Machine.  \n1. Click the enable button in the **cycle** node.  \n This displays the current cycle of the washing Machine in the debug pane each time a message is received.\n2. Click the **Send startWashng command** node button.\n3. Verify that the `msg.payload` that is displayed in the debug pane reflects the current cycle sent by the device.\nFor example:  \n```\n9/18/2017, 1:49:45 PMnode: cycle\nmsg.payload : string[7]\n\"Filling\" \n```",
+    "x": 707,
+    "y": 521,
+    "wires": []
+  },
+  {
+    "id": "cff8956a.9a51d8",
+    "type": "inject",
+    "z": "df3d1726.eb4da8",
+    "name": "Send startWashing command",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "x": 272,
+    "y": 162,
+    "wires": [
+      [
+        "5b768ca.7628c74"
+      ]
+    ]
+  },
+  {
+    "id": "5274a958.dea088",
+    "type": "ibmiot in",
+    "z": "df3d1726.eb4da8",
+    "authentication": "apiKey",
+    "apiKey": "",
+    "inputType": "evt",
+    "deviceId": "",
+    "applicationId": "",
+    "deviceType": "+",
+    "eventType": "+",
+    "commandType": "",
+    "format": "json",
+    "name": "IBM IoT App In",
+    "service": "registered",
+    "allDevices": false,
+    "allApplications": "",
+    "allDeviceTypes": true,
+    "allEvents": true,
+    "allCommands": false,
+    "allFormats": "",
+    "qos": 0,
+    "x": 217,
+    "y": 463,
+    "wires": [
+      [
+        "c87ea598.b3eea8",
+        "4b2d7a01.ada9d4"
+      ]
+    ]
+  },
+  {
+    "id": "5bdf3400.89cc4c",
+    "type": "debug",
+    "z": "df3d1726.eb4da8",
+    "name": "cycle",
+    "active": true,
+    "console": "false",
+    "complete": "payload",
+    "x": 647,
+    "y": 461,
+    "wires": []
+  },
+  {
+    "id": "c87ea598.b3eea8",
+    "type": "debug",
+    "z": "df3d1726.eb4da8",
+    "name": "",
+    "active": true,
+    "console": "false",
+    "complete": "false",
+    "x": 407,
+    "y": 461,
+    "wires": []
+  },
+  {
+    "id": "109dd791.ac6398",
+    "type": "inject",
+    "z": "df3d1726.eb4da8",
+    "name": "Send stopWashing command",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "x": 263,
+    "y": 287,
+    "wires": [
+      [
+        "6870305.9617dd"
+      ]
+    ]
+  },
+  {
+    "id": "4b2d7a01.ada9d4",
+    "type": "function",
+    "z": "df3d1726.eb4da8",
+    "name": "Definition of outputs",
+    "func": "var vibration = {payload: msg.payload.d.vibration};\nvar waterPressure = {payload: msg.payload.d.waterPressure};\nvar currentCycle = { payload: msg.payload.d.currentCycle };\n\n\nreturn [vibration,waterPressure, currentCycle]",
+    "outputs": "3",
+    "noerr": 0,
+    "x": 437,
+    "y": 401,
+    "wires": [
+      [
+        "3b17b916.987c96"
+      ],
+      [
+        "fb95b1ba.d3f9c"
+      ],
+      [
+        "5bdf3400.89cc4c"
+      ]
+    ]
+  },
+  {
+    "id": "3b17b916.987c96",
+    "type": "switch",
+    "z": "df3d1726.eb4da8",
+    "name": "Strong vibration failure",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "gte",
+        "v": "150",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "outputs": 1,
+    "x": 697,
+    "y": 381,
+    "wires": [
+      [
+        "f3e6fc17.9fb77"
+      ]
+    ]
+  },
+  {
+    "id": "25d0b673.8f6faa",
+    "type": "debug",
+    "z": "df3d1726.eb4da8",
+    "name": "Status",
+    "active": true,
+    "complete": "payload",
+    "x": 1067,
+    "y": 401,
+    "wires": []
+  },
+  {
+    "id": "f3e6fc17.9fb77",
+    "type": "template",
+    "z": "df3d1726.eb4da8",
+    "name": "Strong vibration",
+    "field": "payload",
+    "fieldType": "msg",
+    "syntax": "mustache",
+    "template": "Failure - Strong Vibration ({{payload}})",
+    "x": 897,
+    "y": 381,
+    "wires": [
+      [
+        "25d0b673.8f6faa"
+      ]
+    ]
+  },
+  {
+    "id": "d17a7407.a591a8",
+    "type": "template",
+    "z": "df3d1726.eb4da8",
+    "name": "Water leak",
+    "field": "payload",
+    "fieldType": "msg",
+    "syntax": "mustache",
+    "template": "Failure - Water Leak ({{payload}})",
+    "x": 887,
+    "y": 421,
+    "wires": [
+      [
+        "25d0b673.8f6faa"
+      ]
+    ]
+  },
+  {
+    "id": "fb95b1ba.d3f9c",
+    "type": "switch",
+    "z": "df3d1726.eb4da8",
+    "name": "Water leak failure",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "lte",
+        "v": "30",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "outputs": 1,
+    "x": 687,
+    "y": 421,
+    "wires": [
+      [
+        "d17a7407.a591a8"
+      ]
+    ]
+  },
+  {
+    "id": "cbe46b39.aff7b8",
+    "type": "comment",
+    "z": "df3d1726.eb4da8",
+    "name": "Step 5: View failure status",
+    "info": "For detailed steps, see [Using Node-RED for device simulation](https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/guides/node-red-samples.html) in the Watson IoT for Connected Products documentation.\n\nTest the Status of Washing Machine.  \n1. Click the enable button in the **status** node.  \n This displays the failure type if there is any in the debug pane each time a message is received.\n2. Click the **Send Command** node button.\n3. Verify that the `msg.payload` that is displayed in the debug pane reflects the current cycle sent by the device.\nFor example:  \n```\n9/6/2017, 12:31:23 PMnode: status\nmsg.payload : string[35]\n\"Failure - Strong Vibration (150)\"\n```",
+    "x": 1047,
+    "y": 321,
+    "wires": []
+  },
+  {
+    "id": "6344d87b.d0ce38",
+    "type": "cloudant in",
+    "z": "39f5521e.0bbf4e",
+    "name": "Cloudant",
+    "cloudant": "",
+    "database": " iotp_{orgID}_dafault_YYYY-MM-DD",
+    "service": "_ext_",
+    "search": "_idx_",
+    "design": "iotp",
+    "index": "search",
+    "x": 337,
+    "y": 229,
+    "wires": [
+      [
+        "3ba10165.6d02be",
+        "f3405808.5f0888"
+      ]
+    ]
+  },
+  {
+    "id": "27f0e5f4.95e9ca",
+    "type": "inject",
+    "z": "39f5521e.0bbf4e",
+    "name": "Query",
+    "topic": "",
+    "payload": "{\"query\":\"deviceId:<yourdevice> AND deviceType:washingMachine\", \"sort\":\"timestamp<string>\"}",
+    "payloadType": "json",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "x": 127,
+    "y": 229,
+    "wires": [
+      [
+        "6344d87b.d0ce38"
+      ]
+    ]
+  },
+  {
+    "id": "3ba10165.6d02be",
+    "type": "debug",
+    "z": "39f5521e.0bbf4e",
+    "name": "",
+    "active": true,
+    "console": "false",
+    "complete": "false",
+    "x": 527,
+    "y": 309,
+    "wires": []
+  },
+  {
+    "id": "83330517.cc17a8",
+    "type": "comment",
+    "z": "39f5521e.0bbf4e",
+    "name": "Query for and display historical device data",
+    "info":"This sample flow builds on the simulated device flow and lets you pull in historical IoT device data from Cloudant NoSQL DB and display the collected data in a graphic dashboard.",
+    "x": 175,
+    "y": 98,
+    "wires": []
+  },
+  {
+    "id": "7e65b165.18517",
+    "type": "comment",
+    "z": "39f5521e.0bbf4e",
+    "name": "Step 1: Configure Cloudant Connection",
+    "info": "For detailed steps, see [Using Node-RED for device simulation](https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/guides/node-red-samples.html) in the Watson IoT for Connected Products documentation.\n\nBefore you begin:  \n\nIn the IoT for Connected Products dashboard, find your Cloudant information:\n  - Username\n  - Password  \n\n  For more information, see [Cloudant NoSQL DB data access](https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/developing/data_access.html) in the Watson IoT for Connected Products documentation.\n\nDo the following steps in Node-RED.\n1. Edit the **Cloudant** node.\n2. Set Service to **External cloudant or couchdb service**\n3. Create a new Server with the following properties:\n   - Host: `{username}.cloudant.com`\n   - Username: Your Cloudant username\n   - Password: Your Cloudant password\n5. Set Database to the database you want to search.  \nThe Database parameter is in the following format:\n`iotp_{orgID}_{DBName}_YYYY-MM-DD`\nWhere orgID is your IBM Watson IoT Platform organization ID.\nExample: `iotp_mura30_default_2017-05-22`  \n\n4. Set Search by to search index with `iotp / search`\n5. Click **Done**.\n6. Click **Deploy**.\n\n\n\n\n",
+    "x": 427,
+    "y": 169,
+    "wires": []
+  },
+  {
+    "id": "f3405808.5f0888",
+    "type": "function",
+    "z": "39f5521e.0bbf4e",
+    "name": "Format graph data",
+    "func": "//Array for graph to be send\nvar newArray = [];\n\n// itenerate on all the content response from Cloudant\nfor(var i=0; i< msg.payload.length; i++){\n\n    //date and time to timestamp unix\n    var myDate = msg.payload[i].timestamp;\n    var d = new Date(myDate);\n\n    newArray.push( {\n        timestamp: d.getTime(), // data in timestamp unix\n        data: {\n            vibration:msg.payload[i].data.d.vibration, // data to graph\n            waterPressure:msg.payload[i].data.d.waterPressure // data to graph\n        } \n    });\n  }\n\nmsg.payload = newArray;\n\nreturn msg;\n\n",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 547,
+    "y": 229,
+    "wires": [
+      [
+        "b1389485.c2ab68",
+        "e66bd8cd.268f68"
+      ]
+    ]
+  },
+  {
+    "id": "e66bd8cd.268f68",
+    "type": "iot-datasource",
+    "z": "39f5521e.0bbf4e",
+    "name": "WashingMachineGraph",
+    "tstampField": "timestamp",
+    "dataField": "data",
+    "disableDiscover": false,
+    "x": 787,
+    "y": 229,
+    "wires": [
+      [
+        "400d061e.a13bb8"
+      ]
+    ]
+  },
+  {
+    "id": "b1389485.c2ab68",
+    "type": "debug",
+    "z": "39f5521e.0bbf4e",
+    "name": "",
+    "active": true,
+    "console": "false",
+    "complete": "false",
+    "x": 767,
+    "y": 309,
+    "wires": []
+  },
+  {
+    "id": "25860f4.f38a5f",
+    "type": "comment",
+    "z": "39f5521e.0bbf4e",
+    "name": "Step 3: Create a device data graph",
+    "info": "For detailed steps, see [Using Node-RED for device simulation](https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/guides/node-red-samples.html) in the Watson IoT for Connected Products documentation.\n\nBefore you begin:  \nAccess the Node-RED graphics dashboard.\n\nIn a new browser window or tab, open the following URL:   \n `https://{your-node-red-ID}.mybluemix.net/dash` \n Where _your-node-red-ID_ is name of your deployed Node-RED instance.\n\nDo the following steps in the Node-RED dashboard.\n1. Click **Create New Dashboard** and give it a descriptive name.\n2. Create a chart.\n 1. Click **Create New Chart** and give it a descriptive name.\n 2. For Plugin, select **Line/Area Chart**.\n 3. For Datasource, select **WashingMachineGraph**.\n 4. For Request data..., enter `1` and select **day(s) ago**.\n2. Click **Done**.\n\n\n\n\n\n\n",
+    "x": 817,
+    "y": 169,
+    "wires": []
+  },
+  {
+    "id": "400d061e.a13bb8",
+    "type": "debug",
+    "z": "39f5521e.0bbf4e",
+    "name": "",
+    "active": true,
+    "console": "false",
+    "complete": "false",
+    "x": 1007,
+    "y": 229,
+    "wires": []
+  },
+  {
+    "id": "8a72f85f.332a88",
+    "type": "comment",
+    "z": "39f5521e.0bbf4e",
+    "name": "Step 2: Edit the query",
+    "info": "For detailed steps, see [Using Node-RED for device simulation](https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/guides/node-red-samples.html) in the Watson IoT for Connected Products documentation.\n\nBefore you begin:  \n\nIdentify the device ID for the simulated washing machine. \n\nDo the following steps in Node-RED.\n1. Edit the **Query** node.\n2. Edit the Payload.\n3. Update the payload value with the device ID.  \n```json\n{\n    \"query\": \"deviceId:<device ID> AND deviceType:washingMachine\",\n    \"sort\": \"timestamp<string>\"\n}\n```\n3. Click **Done**.\n6. Click **Deploy**.\n\n\n\n\n",
+    "x": 117,
+    "y": 169,
+    "wires": []
+  },
+  {
+    "id": "d88eb51c.62d858",
+    "type": "comment",
+    "z": "39f5521e.0bbf4e",
+    "name": "Step 4: Run the query",
+    "info": "For detailed steps, see [Using Node-RED for device simulation](https://www.ibm.com/support/knowledgecenter/SSQP8H/iot-connected-products/guides/node-red-samples.html) in the Watson IoT for Connected Products documentation.\n\nDo the following steps in Node-RED.\n1. Click the Query node button to query Cloudant for your device data.\n2. Verify that data is returned.\n\nDo the following steps in the Node-RED dashboard.\n1. Open the Node-RED dashboard:   \n `https://{your-node-red-ID}.mybluemix.net/dash`  \n \n Where _your-node-red-ID_ is name of your deployed Node-RED instance.\n2. Select the chart that you created as part of step 3.\n2. Verify that the device data is correctly graphed.\n\n\n\n\n\n\n",
+    "x": 117,
+    "y": 289,
+    "wires": []
+  },
+  {
+    "id": "5b768ca.7628c74",
+    "type": "ibmiot out",
+    "z": "df3d1726.eb4da8",
+    "authentication": "quickstart",
+    "apiKey": "8878b0ea.04f94",
+    "outputType": "evt",
+    "deviceId": " ",
+    "deviceType": "0.16.2",
+    "eventCommandType": " ",
+    "format": "json",
+    "data": " ",
+    "qos": 0,
+    "name": "Send to IBM IoT Platform",
+    "service": "quickstart",
+    "x": 752,
+    "y": 158,
+    "wires": []
+  },
+  {
+    "id": "6870305.9617dd",
+    "type": "ibmiot out",
+    "z": "df3d1726.eb4da8",
+    "authentication": "quickstart",
+    "apiKey": "8878b0ea.04f94",
+    "outputType": "evt",
+    "deviceId": " ",
+    "deviceType": "0.16.2",
+    "eventCommandType": " ",
+    "format": "json",
+    "data": " ",
+    "qos": 0,
+    "name": "Send to IBM IoT Platform",
+    "service": "quickstart",
+    "x": 733,
+    "y": 284,
+    "wires": []
   }
 ]
