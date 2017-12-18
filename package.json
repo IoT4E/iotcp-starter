@@ -1,7 +1,7 @@
 {
     "name": "iot4electronics",
-    "version": "0.0.1",
-    "description": "IoT4Electronics Server",
+    "version": "v1.3.0",
+    "description": "IoT4Electronics Starter",
     "scripts": {
         "start": "node app.js"
     },
