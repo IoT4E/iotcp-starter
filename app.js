@@ -142,7 +142,7 @@ var iotfCredentials = VCAP_SERVICES["iotf-service"][0]["credentials"];
 if(!VCAP_SERVICES || !VCAP_SERVICES["ibm-iot-for-electronics"])
 	throw "Cannot get IoT4E credentials"
 var iotECredentials = VCAP_SERVICES["ibm-iot-for-electronics"][0]["credentials"];
-var registrationURL = iotECredentials.registrationUrl.substring('http://'.length);
+var registrationURL = iotECredentials.registrationUrl.substring('https://'.length);
 var iotEForRTI = VCAP_SERVICES["ibm-iot-for-electronics"][0];
 //IoT Platform Credentials
 var name = iotfCredentials["org"];
