@@ -9,7 +9,7 @@
 	"main_page": {
 		"page_title": "IBM IoT Connection Service",
 		"top_title": "IBM IoT Connection Service Starter Experience",
-		"sections_preheading": "Experience IBM IoT Connection Service from the perspective of both the manufacturer and the consumer",
+		"sections_preheading": "Experience IoT Connection Service from the perspective of both the manufacturer and the consumer",
 		"sections_headingx": "Select what you want to do:",
 		"sections_heading": "Connect and manage simulated appliances",
 		"simulate_appliance_titlex": "1. Manage Simulated Appliances",
@@ -46,7 +46,7 @@
 		"mobile_download_more_details": "For detailed instructions, see the documentation.",
 		"scan_heading": "To connect the app to the environment, you'll be asked to scan this QR code",
 		"connection_code": "Connection QR code",
-		"scan_p1": "The first time you use the mobile consumer app on your phone, you will scan this code to connect your mobile device to your IBM IoT Connection Service environment.",
+		"scan_p1": "The first time you use the mobile consumer app on your phone, you will scan this code to connect your mobile device to your IoT Connection Service environment.",
 		"scan_p2": "You'll be asked to scan a different QR Code to register a washer on your mobile app with the platform. You will then go to the Add Washer section on this screen and click the washer being used. The window that opens displays the QR Code for the washer.",
 		"back_to_top": "Back to top",
 		"explore_more": "EXPLORE MORE",
