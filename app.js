@@ -197,12 +197,9 @@ var authenticate = function (req, res, next) {
 
 var appIdValidation = function (req, res, next) {
 	if (isAppIdEnabled) {
-		console.log('ck:01::isAppIdEnabled=true');
 		passport.authenticate(APIStrategy.STRATEGY_NAME, { session: false })(req, res, next);
-		console.log('ck:01-1::I should arrive here, too');
 		//next();
 	} else {
-		console.log('ck:02::isAppIdEnabled=false');
 		next();
 	}
 }
@@ -550,8 +547,6 @@ app.get('/v001/user/:userID', authenticate, function (req, res) {
 /***************************************************************/
 app.get('/user/:userID', appIdValidation, function (req, res) {
 	
-	console.log('ck:03::want to create a user');
-
 	if (req.query['createUser'] && req.query['createUser'].toLowerCase() == 'true') {
 		console.log('Enter the process to check if the user exist and create the user. user id is=' + req.params.userID);
 		createUser(req.params.userID);
