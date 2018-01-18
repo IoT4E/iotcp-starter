@@ -546,7 +546,7 @@ app.get('/v001/user/:userID', authenticate, function (req, res) {
 /* Takes a userID in the url params                            */
 /***************************************************************/
 app.get('/user/:userID', appIdValidation, function (req, res) {
-	
+
 	if (req.query['createUser'] && req.query['createUser'].toLowerCase() == 'true') {
 		console.log('Enter the process to check if the user exist and create the user. user id is=' + req.params.userID);
 		createUser(req.params.userID);
@@ -1083,24 +1083,12 @@ request({ // check rti mode
 					schemaName: body.name
 				}
 
-				var iotLabel = iotEForRTI.label.length + 1 // get the name of the service
-
-				var lengthString = iotEForRTI.name.length - iotLabel;  // the length of the boiler+iot4e - the name of the iot4e service
-				var boilerName = iotEForRTI.name.substring(0, lengthString); // get the string from 0 - boiler name
-
-
-				var defineBoiler;
-				if (iotECredentials.registrationUrl.includes("stage1")) {
-					defineBoiler = 'stage1'
-				} else if (iotECredentials.registrationUrl.includes("eu-gb")) {
-					defineBoiler = 'eu-gb'
-				}
 				const actionBody = {
 					"name": "Trigger IoT4E Notification",
 					"description": "This action triggers the IoT for Electronics Node-RED notification flow.",
 					"type": "node-red",
 					"fields": {
-						"url": defineBoiler !== undefined ? "https://" + boilerName + "." + defineBoiler + ".mybluemix.net/api/rti-alert" : "https://" + boilerName + ".mybluemix.net/api/rti-alert",
+						"url": "https://" + application.application_uris[0] + "/rti-alert",
 						"method": "POST",
 						"username": "",
 						"password": "",
