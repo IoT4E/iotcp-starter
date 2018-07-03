@@ -112,8 +112,8 @@ app.use(function (req, res, next) {
 app.use(helmet());
 app.use(cors());
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '20mb'}));
+app.use(bodyParser.urlencoded({ extended: false, limit: '20mb' }));
 app.use(cookieParser());
 app.use(i18n.init);
 
