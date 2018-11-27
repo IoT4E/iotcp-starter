@@ -1,16 +1,4 @@
-<!--
-/********************************************************* {COPYRIGHT-TOP} ***
-* IBM Confidential
-* OCO Source Materials
-* IoT for Electronics - SVL720160500
-*
-* (C) Copyright IBM Corp. 2016  All Rights Reserved.
-*
-* The source code for this program is not published or otherwise  
-* divested of its trade secrets, irrespective of what has been 
-* deposited with the U.S. Copyright Office.
-********************************************************* {COPYRIGHT-END} **/
--->
+
 
 <html>
   <head>
@@ -23,7 +11,7 @@
     <script src="/javascripts/iotAppMonitorClient.js"></script>
     <script src="/jquery/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-	<!--script type="text/javascript"> digitalData = {page: {pageInfo: {pageID: "IOTELECTRONICS"}}} </script-->    		
+	<!--script type="text/javascript"> digitalData = {page: {pageInfo: {pageID: "IOTELECTRONICS"}}} </script-->
   </head>
   <body>
     <h4 class="bluemix-bar"><%= __('appliance_page.top_title') %></h4>
@@ -257,7 +245,7 @@
             $('.washer-content .washer-text ul li strong').eq(1).text(device.vibration + " <%= __('appliance_page.vibration_unit') %>");
             $('.washer-content .washer-text ul li strong').eq(2).text(device.waterPressure + " <%= __('appliance_page.water_pressure_unit') %>");
             $('.washer-content .washer-text ul li img').attr('src', '/images/Checkmark.svg');
-          }          
+          }
         }
       };
     </script>

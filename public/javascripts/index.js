@@ -1,14 +1,3 @@
-/********************************************************* {COPYRIGHT-TOP} ***
-* IBM Confidential
-* OCO Source Materials
-* IoT for Electronics - SVL720160500
-*
-* (C) Copyright IBM Corp. 2016  All Rights Reserved.
-*
-* The source code for this program is not published or otherwise  
-* divested of its trade secrets, irrespective of what has been 
-* deposited with the U.S. Copyright Office.
-********************************************************* {COPYRIGHT-END} **/
 
 var numberOfDevices = 0;
 var MAX_DEVICES = 5;
@@ -107,7 +96,7 @@ $(document).ready(function(){
           $('#addNewDeviceButton').prop('disabled', false);
           $('#addNewDeviceButton img').attr("src","../images/PlusWasher_en.svg");
          }
-         
+
          validateNoWasherMessage();
          validateAppExperienceWasherMessage();
          //analytics.track("IoT for Electronics -> Add Device", {});
@@ -225,7 +214,7 @@ $(document).ready(function(){
       './red',
       '_blank'
     );
-  })  
+  })
 });
 
 function validateNoWasherMessage(){
